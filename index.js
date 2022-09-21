@@ -50,12 +50,39 @@
 // }
 // console.log(calc("2.5"));
 
-function calc(expr) {
-  if (expr !== "") {
-    expr.splice(2, 1, expr[2]);
-    return eval(expr.join(""));
-  }
-  return 0;
+// function calc(expr) {
+//   if (expr !== "") {
+//     expr.splice(2, 1, expr[2]);
+//     return eval(expr.join(""));
+//   }
+//   return 0;
+// }
+
+// calc(["2 3 -"]);
+
+// const sum = () => {
+//   console.log(arguments);
+//   const args = [...arguments];
+//   console.log(args);
+//   return args.reduce((a, b) => a + b, 0);
+// };
+
+// console.log(sum(0, 2, 10, 12));
+
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"],
+};
+function makeList(arr) {
+  // Only change code below this line
+  const failureItems = [
+    result.failure.map((el) => `<liclass="text-warning">${el}</li>`),
+  ];
+  // Only change code above this line
+
+  return failureItems;
 }
 
-calc(["2 3 -"]);
+const failuresList = makeList(result.failure);
+console.log(failuresList);
