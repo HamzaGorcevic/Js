@@ -69,20 +69,62 @@
 
 // console.log(sum(0, 2, 10, 12));
 
-const result = {
-  success: ["max-length", "no-amd", "prefer-arrow-functions"],
-  failure: ["no-var", "var-on-top", "linebreak"],
-  skipped: ["no-extra-semi", "no-dup-keys"],
-};
-function makeList(arr) {
-  // Only change code below this line
-  const failureItems = [
-    result.failure.map((el) => `<liclass="text-warning">${el}</li>`),
-  ];
-  // Only change code above this line
+// const result = {
+//   success: ["max-length", "no-amd", "prefer-arrow-functions"],
+//   failure: ["no-var", "var-on-top", "linebreak"],
+//   skipped: ["no-extra-semi", "no-dup-keys"],
+// };
+// function makeList(arr) {
+//   // Only change code below this line
+//   const failureItems = [
+//     result.failure.map((el) => `<liclass="text-warning">${el}</li>`),
+//   ];
+//   // Only change code above this line
 
-  return failureItems;
+//   return failureItems;
+// }
+
+// const failuresList = makeList(result.failure);
+// console.log(failuresList);
+
+// class Thermostat {
+//   constructor(F) {
+//     this._temperature = F;
+//   }
+//   get temperature() {
+//     return (this._temperature = (5 / 9) * (this._temperature - 32));
+//   }
+//   set temperature(updatedF) {
+//     this._temperature = updatedF;
+//     console.log(this._temperature);
+//   }
+// }
+// // Only change code above this line
+
+// const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+// let temp = thermos.temperature; // 24.44 in Celsius
+// console.log(temp);
+// thermos.temperature = 26;
+// temp = thermos.temperature; // 26 in Celsius
+
+// console.log(temp);
+
+function zeroArray(m, n) {
+  // Creates a 2-D array with m rows and n columns of zeroes
+  let newArray = [];
+  let row = [];
+  for (let i = 0; i < m; i++) {
+    // Adds the m-th row into newArray
+    for (let j = 0; j < n; j++) {
+      // Pushes n zeroes into the current row to create the columns
+      row.push(0);
+      console.log(row);
+    }
+    // Pushes the current row, which now has n zeroes in it, to the array
+    newArray.push(row);
+  }
+  return newArray;
 }
 
-const failuresList = makeList(result.failure);
-console.log(failuresList);
+let matrix = zeroArray(3, 2);
+console.log(matrix);
