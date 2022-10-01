@@ -128,5 +128,97 @@
 
 // let matrix = zeroArray(3, 2);
 // console.log(matrix);
+// Setup
+// Setup
+// const recordCollection = {
+//   2548: {
+//     albumTitle: "Slippery When Wet",
+//     artist: "Bon Jovi",
+//     tracks: ["Let It Rock", "You Give Love a Bad Name"],
+//   },
+//   2468: {
+//     albumTitle: "1999",
+//     artist: "Prince",
+//     tracks: ["1999", "Little Red Corvette"],
+//   },
+//   1245: {
+//     artist: "Robert Palmer",
+//     tracks: [],
+//   },
+//   5439: {
+//     albumTitle: "ABBA Gold",
+//   },
+// };
 
-console.log("this is good");
+// // Only change code below this line
+// function updateRecords(records, id, prop, value) {
+//   if (prop === "artist") {
+//     records[id][prop] = value;
+//   } else if (prop === "tracks") {
+//     records[id][prop]
+//       ? records[id][prop].push(value)
+//       : (records[id][prop] = [value]);
+//   } else if (prop === "albumTitle") {
+//     records[id][prop] = value;
+//   }
+//   return records;
+// }
+
+// console.log(updateRecords(recordCollection, 5439, "tracks", "ABBA"));
+
+// Setup
+const myArr = [2, 3, 4, 5, 6];
+
+// Only change code below this line
+// Setup
+let total = 0;
+// Only change code below this line
+for (i of myArr) {
+  total += i;
+}
+
+// Setup
+const contacts = [
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
+];
+
+function lookUpProfile(name, prop) {
+  var nes;
+  contacts.map((el) => {
+    if (el.firstName === name) {
+      if (el.hasOwnProperty(prop)) {
+        nes = el[prop];
+      } else {
+        ("No such property");
+      }
+    }
+    console.log(nes);
+  });
+
+  // Only change code above this line
+}
+
+console.log(lookUpProfile("Akira", "likes"), "nes");
