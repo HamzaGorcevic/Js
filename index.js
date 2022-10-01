@@ -167,58 +167,69 @@
 // console.log(updateRecords(recordCollection, 5439, "tracks", "ABBA"));
 
 // Setup
-const myArr = [2, 3, 4, 5, 6];
+// const myArr = [2, 3, 4, 5, 6];
 
-// Only change code below this line
-// Setup
-let total = 0;
-// Only change code below this line
-for (i of myArr) {
-  total += i;
+// // Only change code below this line
+// // Setup
+// let total = 0;
+// // Only change code below this line
+// for (i of myArr) {
+//   total += i;
+// }
+
+// // Setup
+// const contacts = [
+//   {
+//     firstName: "Akira",
+//     lastName: "Laine",
+//     number: "0543236543",
+//     likes: ["Pizza", "Coding", "Brownie Points"],
+//   },
+//   {
+//     firstName: "Harry",
+//     lastName: "Potter",
+//     number: "0994372684",
+//     likes: ["Hogwarts", "Magic", "Hagrid"],
+//   },
+//   {
+//     firstName: "Sherlock",
+//     lastName: "Holmes",
+//     number: "0487345643",
+//     likes: ["Intriguing Cases", "Violin"],
+//   },
+//   {
+//     firstName: "Kristian",
+//     lastName: "Vos",
+//     number: "unknown",
+//     likes: ["JavaScript", "Gaming", "Foxes"],
+//   },
+// ];
+
+// function lookUpProfile(name, prop) {
+//   var nes;
+//   contacts.map((el) => {
+//     if (el.firstName === name) {
+//       if (el.hasOwnProperty(prop)) {
+//         nes = el[prop];
+//       } else {
+//         ("No such property");
+//       }
+//     }
+//     console.log(nes);
+//   });
+
+//   // Only change code above this line
+// }
+
+// console.log(lookUpProfile("Akira", "likes"), "nes");
+
+const a = 22;
+const b = 22;
+
+function program() {
+  let a = 66;
+  c = a + b;
+
+  console.log(c);
 }
-
-// Setup
-const contacts = [
-  {
-    firstName: "Akira",
-    lastName: "Laine",
-    number: "0543236543",
-    likes: ["Pizza", "Coding", "Brownie Points"],
-  },
-  {
-    firstName: "Harry",
-    lastName: "Potter",
-    number: "0994372684",
-    likes: ["Hogwarts", "Magic", "Hagrid"],
-  },
-  {
-    firstName: "Sherlock",
-    lastName: "Holmes",
-    number: "0487345643",
-    likes: ["Intriguing Cases", "Violin"],
-  },
-  {
-    firstName: "Kristian",
-    lastName: "Vos",
-    number: "unknown",
-    likes: ["JavaScript", "Gaming", "Foxes"],
-  },
-];
-
-function lookUpProfile(name, prop) {
-  var nes;
-  contacts.map((el) => {
-    if (el.firstName === name) {
-      if (el.hasOwnProperty(prop)) {
-        nes = el[prop];
-      } else {
-        ("No such property");
-      }
-    }
-    console.log(nes);
-  });
-
-  // Only change code above this line
-}
-
-console.log(lookUpProfile("Akira", "likes"), "nes");
+program();
