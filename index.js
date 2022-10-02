@@ -223,13 +223,21 @@
 
 // console.log(lookUpProfile("Akira", "likes"), "nes");
 
-const a = 22;
-const b = 22;
+// const a = 22;
+// const b = 22;
+// var c;
+// function program() {
+//   let a = 66;
+//   c = a + b;
 
-function program() {
-  let a = 66;
-  c = a + b;
+//   console.log(c);
+// }
+// program();
 
-  console.log(c);
-}
-program();
+console.log(a);
+var a = 10; //function scope
+console.log(a);
+
+console.log(b);
+let b = 30; //block scope
+console.log(b);
