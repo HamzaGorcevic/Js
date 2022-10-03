@@ -234,10 +234,10 @@
 // }
 // program();
 
-console.log(a);
-var a = 10; //function scope
-console.log(a);
+class Promise {
+  constructor(name, age) {
+    console.log(name, this.age);
+  }
+}
 
-console.log(b);
-let b = 30; //block scope
-console.log(b);
+console.log(new Promise("hamza", 123));
