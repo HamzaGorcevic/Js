@@ -241,3 +241,4 @@ class Promise {
 }
 
 console.log(new Promise("hamza", 123));
+console.log(new Promise());
