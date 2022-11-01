@@ -4,3 +4,8 @@ body {
   border-top-right-radius: 10px;
   transform: rotate(180deg);
 }
+
+input {
+  width: 300px;
+  height: 250px;
+}

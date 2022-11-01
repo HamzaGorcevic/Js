@@ -234,11 +234,35 @@
 // }
 // program();
 
-class Promise {
-  constructor(name, age) {
-    console.log(name, this.age);
-  }
-}
+// class Promise {
+//   constructor(name, age) {
+//     console.log(name, this.age);
+//   }
+// }
 
-console.log(new Promise("hamza", 123));
-console.log(new Promise());
+// console.log(new Promise("hamza", 123));
+// console.log(new Promise());
+
+// console.log([[[[[[[22]]]]]]] == 22);
+
+let input = document.querySelector("input");
+let value = 0;
+let max = 0;
+
+input.addEventListener("change", (e) => {
+  let valueOf = "";
+  value = e.target.value;
+  max = 0;
+
+  for (i = 0; i < (value + "").length; i++) {
+    if (max < value[i]) {
+      max = value[i];
+    }
+  }
+
+  console.log(value, value.indexOf(max));
+});
+
+// if(value > 100 && value < 999){
+//   let array
+// }
