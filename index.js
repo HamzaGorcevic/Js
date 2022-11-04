@@ -246,21 +246,13 @@
 // console.log([[[[[[[22]]]]]]] == 22);
 
 let input = document.querySelector("input");
-let value = 0;
-let max = 0;
 
 input.addEventListener("change", (e) => {
-  let valueOf = "";
-  value = e.target.value;
-  max = 0;
-
-  for (i = 0; i < (value + "").length; i++) {
-    if (max < value[i]) {
-      max = value[i];
-    }
-  }
-
-  console.log(value, value.indexOf(max));
+  let value = e.target.value;
+  max = Math.max(...value);
+  let val = value.replace(max, "");
+  let changed = val[0] + max + val[1];
+  console.log(changed, changed.split("").reverse().join(""));
 });
 
 // if(value > 100 && value < 999){
