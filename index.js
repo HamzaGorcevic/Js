@@ -250,11 +250,37 @@ let input = document.querySelector("input");
 input.addEventListener("change", (e) => {
   let value = e.target.value;
   max = Math.max(...value);
-  let val = value.replace(max, "");
-  let changed = val[0] + max + val[1];
-  console.log(changed, changed.split("").reverse().join(""));
+  value = value.replace(max, "");
+  value = value[0] + max + value[1];
+  console.log(value, value.split("").reverse().join(""));
 });
 
-// if(value > 100 && value < 999){
-//   let array
+// solution in c
+// #include <stdio.h>
+
+// int main()
+// {
+//     int n;
+//     printf("unesite broj");
+//     scanf("%d",&n);
+
+//     int first ,second,last;
+//      first = n / 100;
+//      second = n / 10 % 10;
+//      last = n % 100 % 10;
+
+//      if(first  > second && first > last){
+//          printf("%d%d%d \n",second,first,last);
+//          printf("%d%d%d \n",last,first,second);
+//      };
+//      if(second  > first && second > last){
+//     printf("%d%d%d \n",last,second,first);
+//     printf("%d%d%d \n",first,second,last);
+//      };
+//      if(last  > second && last > first){
+//     printf("%d%d%d \n",first,last,second);
+//     printf("%d%d%d \n",second,last,first);
+//      };
+
+//     return 0;
 // }
