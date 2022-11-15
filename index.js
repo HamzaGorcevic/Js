@@ -245,15 +245,15 @@
 
 // console.log([[[[[[[22]]]]]]] == 22);
 
-let input = document.querySelector("input");
+// let input = document.querySelector("input");
 
-input.addEventListener("change", (e) => {
-  let value = e.target.value;
-  max = Math.max(...value);
-  value = value.replace(max, "");
-  value = value[0] + max + value[1];
-  console.log(value, value.split("").reverse().join(""));
-});
+// input.addEventListener("change", (e) => {
+//   let value = e.target.value;
+//   max = Math.max(...value);
+//   value = value.replace(max, "");
+//   value = value[0] + max + value[1];
+//   console.log(value, value.split("").reverse().join(""));
+// });
 
 // solution in c
 // #include <stdio.h>
@@ -284,3 +284,11 @@ input.addEventListener("change", (e) => {
 
 //     return 0;
 // }
+n = 2;
+for (i = 2; i < 600; i++) {
+  for (j = 0; j < 600; j++) {
+    if (j % i) {
+      console.log(i);
+    }
+  }
+}
