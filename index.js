@@ -284,11 +284,33 @@
 
 //     return 0;
 // }
-n = 2;
-for (i = 2; i < 600; i++) {
-  for (j = 0; j < 600; j++) {
-    if (j % i) {
-      console.log(i);
+// n = 2;
+// for (i = 2; i < 600; i++) {
+//   for (j = 0; j < 600; j++) {
+//     if (j % i == 0) {
+//       console.log(i);
+//     }
+//   }
+// }
+
+// medium exercise from leet code
+
+function topKFrequent(nums, k) {
+    let mapper = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (mapper.has(nums[i])) {
+            let temp = mapper.get(nums[i]);
+            temp++;
+            mapper.set(nums[i], temp);
+        } else {
+            mapper.set(nums[i], 1);
+        }
     }
-  }
+    const entries = [...mapper.entries()];
+
+    let sorted = entries.sort((a, b) => b[1] - a[1]);
+    const result = sorted.slice(0, k).map((el) => el[0]);
+    return result;
 }
+
+console.log(topKFrequent([1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5], 2));
