@@ -295,22 +295,143 @@
 
 // medium exercise from leet code
 
-function topKFrequent(nums, k) {
-    let mapper = new Map();
-    for (let i = 0; i < nums.length; i++) {
-        if (mapper.has(nums[i])) {
-            let temp = mapper.get(nums[i]);
-            temp++;
-            mapper.set(nums[i], temp);
-        } else {
-            mapper.set(nums[i], 1);
-        }
-    }
-    const entries = [...mapper.entries()];
+// function topKFrequent(nums, k) {
+//     let mapper = new Map();
+//     for (let i = 0; i < nums.length; i++) {
+//         if (mapper.has(nums[i])) {
+//             let temp = mapper.get(nums[i]);
+//             temp++;
+//             mapper.set(nums[i], temp);
+//         } else {
+//             mapper.set(nums[i], 1);
+//         }
+//     }
+//     const entries = [...mapper.entries()];
 
-    let sorted = entries.sort((a, b) => b[1] - a[1]);
-    const result = sorted.slice(0, k).map((el) => el[0]);
-    return result;
+//     let sorted = entries.sort((a, b) => b[1] - a[1]);
+//     const result = sorted.slice(0, k).map((el) => el[0]);
+//     return result;
+// }
+
+// console.log(topKFrequent([1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5], 2));
+
+// medium exist exercice
+// NOT FINISHED!
+// function exist(board, word) {
+//     let wordLen = word.length;
+//     let path = [];
+//     let neigbours = [
+//         [-1, 0],
+//         [1, 0],
+//         [0, 1],
+//         [0, -1],
+//     ];
+
+//     path = [0, 0];
+
+//     console.log("path", path, wordLen);
+//     let l = 0;
+//     let attempt = 0;
+//     let copy = wordLen;
+//     while (wordLen > 0) {
+//         while (attempt < 4) {
+//             path[0] += neigbours[attempt][0];
+//             path[1] += neigbours[attempt][1];
+//             attempt++;
+
+//             if (
+//                 path[0] > -1 &&
+//                 path[1] > -1 &&
+//                 path[0] < board.length &&
+//                 board[0].length > path[1]
+//             ) {
+//                 break;
+//             }
+//         }
+//         console.log(board[path[0]][path[1]]);
+//         if (board[path[0]][path[1]] == word[l]) {
+//             wordLen--;
+
+//             l++;
+//         }
+
+//         copy--;
+//         if (attempt >= 4) {
+//             attempt = 0;
+//         }
+//         l++;
+//     }
+//     console.log(wordLen);
+
+//     return wordLen <= 0;
+// }
+
+// console.log(
+//     exist(
+//         [
+//             ["A", "B", "C", "E"],
+//             ["S", "F", "B", "S"],
+//             ["A", "D", "E", "E"],
+//         ],
+//         "ABCB"
+//     )
+// );
+
+function isValidSudoku(board) {
+    let mapper = new Map();
+
+    let str1 = [];
+    let str2 = [];
+    let str3 = [];
+
+    board.map((el) => {
+        str1.push(el.slice(0, 3));
+
+        str2.push(el.slice(3, 6));
+        str3.push(el.slice(6, 9));
+    });
+
+    str1.filter((el) => el != ".");
+    // console.log(str1);
+    // console.log(str2);
+    // console.log(str3);
+
+    nes1 = [];
+    nes2 = [];
+    nes3 = [];
+
+    for (let i = 0; i < 9; i++) {
+        if (i % 3 == 0) {
+            nes1.push("!");
+            nes2.push("!");
+            nes3.push("!");
+        }
+        nes1.push(str1[i]);
+        nes2.push(str2[i]);
+        nes3.push(str3[i]);
+    }
+    // console.log(nes1);
+    // console.log(nes2);
+    // console.log(nes3);
+    let counter = 0;
+    let niz = [];
+    const filteredNes1 = nes1.filter((el) => {
+        if (el != "!") {
+            return el;
+        }
+    });
+
+    console.log("NES!", filteredNes1);
 }
 
-console.log(topKFrequent([1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5], 2));
+isValidSudoku([
+    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+    [".", "9", "8", ".", ".", ".", ".", "6", "."],
+    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+    [".", "6", ".", ".", ".", ".", "2", "8", "."],
+    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+    [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+]);
