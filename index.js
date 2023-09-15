@@ -377,61 +377,51 @@
 //     )
 // );
 
-function isValidSudoku(board) {
-    let mapper = new Map();
+function findId(str) {
+    let niz = [];
+    let setter = true;
+    str.forEach((el, i) => {
+        el.forEach((e) => {
+            if (e != ".") niz.push(e);
+        });
 
+        if ((i + 1) % 3 == 0) {
+            helper = new Set(niz);
+            if (niz.length != helper.size) {
+                setter = false;
+                return;
+            }
+            niz = [];
+            setter = true;
+            // return;
+        }
+    });
+    return setter;
+}
+function isValidSudoku(board) {
     let str1 = [];
     let str2 = [];
     let str3 = [];
 
     board.map((el) => {
         str1.push(el.slice(0, 3));
-
         str2.push(el.slice(3, 6));
         str3.push(el.slice(6, 9));
     });
-
-    str1.filter((el) => el != ".");
-    // console.log(str1);
-    // console.log(str2);
-    // console.log(str3);
-
-    nes1 = [];
-    nes2 = [];
-    nes3 = [];
-
-    for (let i = 0; i < 9; i++) {
-        if (i % 3 == 0) {
-            nes1.push("!");
-            nes2.push("!");
-            nes3.push("!");
-        }
-        nes1.push(str1[i]);
-        nes2.push(str2[i]);
-        nes3.push(str3[i]);
-    }
-    // console.log(nes1);
-    // console.log(nes2);
-    // console.log(nes3);
-    let counter = 0;
-    let niz = [];
-    const filteredNes1 = nes1.filter((el) => {
-        if (el != "!") {
-            return el;
-        }
-    });
-
-    console.log("NES!", filteredNes1);
+    console.log("result", findId(str1));
+    return findId(str1) && findId(str2) && findId(str3);
 }
 
-isValidSudoku([
-    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-    [".", "9", "8", ".", ".", ".", ".", "6", "."],
-    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-    [".", "6", ".", ".", ".", ".", "2", "8", "."],
-    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-    [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-]);
+console.log(
+    isValidSudoku([
+        ["5", "3", "4", ".", "7", ".", "0", ".", "."],
+        ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+        [".", "9", "8", ".", ".", ".", ".", "6", "."],
+        ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+        ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+        ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+        [".", "6", ".", ".", ".", ".", "2", "8", "."],
+        [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+        [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+    ])
+);
