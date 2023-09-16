@@ -377,51 +377,107 @@
 //     )
 // );
 
-function findId(str) {
-    let niz = [];
-    let setter = true;
-    str.forEach((el, i) => {
-        el.forEach((e) => {
-            if (e != ".") niz.push(e);
-        });
+// function findId(str) {
+//     let niz = [];
+//     let setter = true;
+//     str.forEach((el, i) => {
+//         el.forEach((e) => {
+//             if (e != ".") niz.push(e);
+//         });
 
-        if ((i + 1) % 3 == 0) {
-            helper = new Set(niz);
-            if (niz.length != helper.size) {
-                setter = false;
-                return;
-            }
-            niz = [];
-            setter = true;
-            // return;
+//         if ((i + 1) % 3 == 0) {
+//             let helper = new Set(niz);
+//             if (niz.length != helper.size) {
+//                 setter = false;
+//                 return;
+//             }
+//             niz = [];
+//             setter = true;
+//             // return;
+//         }
+//     });
+//     return setter;
+// }
+// function isValidSudoku(board) {
+//     let str1 = [];
+//     let str2 = [];
+//     let str3 = [];
+
+//     board.map((el) => {
+//         str1.push(el.slice(0, 3));
+//         str2.push(el.slice(3, 6));
+//         str3.push(el.slice(6, 9));
+//     });
+//     for (let i = 0; i < 9; i++) {
+//         let niz = [];
+//         for (let j = 0; j < 9; j++) {
+//             if (board[i][j] != ".") {
+//                 niz.push(board[i][j]);
+//             }
+//         }
+//         let help = new Set(niz);
+//         if (niz.length != help.size) {
+//             return false;
+//         }
+//     }
+
+//     for (let i = 0; i < 9; i++) {
+//         let niz = [];
+//         for (let j = 0; j < 9; j++) {
+//             if (board[j][i] != ".") {
+//                 niz.push(board[j][i]);
+//             }
+//         }
+//         let help = new Set(niz);
+//         if (niz.length != help.size) {
+//             return false;
+//         }
+//     }
+//     return findId(str1) && findId(str2) && findId(str3);
+// }
+
+// console.log(
+//     isValidSudoku([
+//         ["5", "3", "4", ".", "7", ".", "0", ".", "."],
+//         ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+//         [".", "9", "8", ".", ".", ".", "9", "6", "."],
+//         ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+//         ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+//         ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+//         [".", "6", ".", ".", ".", ".", "2", "8", "."],
+//         [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+//         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+//     ])
+// );
+
+function longestConsecutive(nums) {
+    if (nums.length == 0) {
+        return 0;
+    }
+    nums = nums.sort((a, b) => a - b);
+    let counter = 0;
+    let mapper = new Map();
+    let nes = 0;
+    console.log(nums);
+
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i] == nums[i + 1]) {
+            continue;
         }
-    });
-    return setter;
-}
-function isValidSudoku(board) {
-    let str1 = [];
-    let str2 = [];
-    let str3 = [];
+        if (nums[i] + 1 == nums[i + 1]) {
+            counter++;
+            nes++;
+        } else {
+            nes++;
+            mapper.set(counter, counter);
+            counter = 0;
+        }
+    }
 
-    board.map((el) => {
-        str1.push(el.slice(0, 3));
-        str2.push(el.slice(3, 6));
-        str3.push(el.slice(6, 9));
-    });
-    console.log("result", findId(str1));
-    return findId(str1) && findId(str2) && findId(str3);
+    if (Math.max(...mapper.values()) < counter) {
+        return counter + 1;
+    }
+    return Math.max(...mapper.values()) + 1;
 }
 
-console.log(
-    isValidSudoku([
-        ["5", "3", "4", ".", "7", ".", "0", ".", "."],
-        ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-        [".", "9", "8", ".", ".", ".", ".", "6", "."],
-        ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-        ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-        ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-        [".", "6", ".", ".", ".", ".", "2", "8", "."],
-        [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-        [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-    ])
-);
+console.log(longestConsecutive([1, 2, 0, 1]));
