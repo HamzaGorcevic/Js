@@ -450,34 +450,52 @@
 //     ])
 // );
 
-function longestConsecutive(nums) {
-    if (nums.length == 0) {
-        return 0;
-    }
-    nums = nums.sort((a, b) => a - b);
-    let counter = 0;
-    let mapper = new Map();
-    let nes = 0;
-    console.log(nums);
+// function longestConsecutive(nums) {
+//     if (nums.length == 0) {
+//         return 0;
+//     }
+//     nums = nums.sort((a, b) => a - b);
+//     let counter = 0;
+//     let mapper = new Map();
+//     let nes = 0;
+//     console.log(nums);
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        if (nums[i] == nums[i + 1]) {
-            continue;
-        }
-        if (nums[i] + 1 == nums[i + 1]) {
-            counter++;
-            nes++;
-        } else {
-            nes++;
-            mapper.set(counter, counter);
-            counter = 0;
-        }
-    }
+//     for (let i = 0; i < nums.length - 1; i++) {
+//         if (nums[i] == nums[i + 1]) {
+//             continue;
+//         }
+//         if (nums[i] + 1 == nums[i + 1]) {
+//             counter++;
+//             nes++;
+//         } else {
+//             nes++;
+//             mapper.set(counter, counter);
+//             counter = 0;
+//         }
+//     }
 
-    if (Math.max(...mapper.values()) < counter) {
-        return counter + 1;
+//     if (Math.max(...mapper.values()) < counter) {
+//         return counter + 1;
+//     }
+//     return Math.max(...mapper.values()) + 1;
+// }
+
+// console.log(longestConsecutive([1, 2, 0, 1]));
+function isValid(s) {
+    const stack = [];
+    let combination = { "(": ")", "{": "}", "[": "]" };
+    let combination2 = { ")": 1, "}": 2, "]": 3 };
+
+    for (let i = 0; i < s.length; i++) {
+        if (combination[s[i]]) {
+            stack.push(combination[s[i]]);
+        } else if (combination2[s[i]]) {
+            if (stack.pop() != s[i]) {
+                return false;
+            }
+        }
     }
-    return Math.max(...mapper.values()) + 1;
+    return true;
 }
 
-console.log(longestConsecutive([1, 2, 0, 1]));
+console.log(isValid("()"));
