@@ -632,32 +632,50 @@
 //     ])
 // );
 
-// medium zagrade
+// medium zagrade backtracking
 
-function generateParenthesis(n) {
-    let stack = [];
-    let niz = [];
+// function generateParenthesis(n) {
+//     let stack = [];
+//     let niz = [];
 
-    function recursive(open, closed) {
-        console.log(open == closed && closed == n);
-        if (open == closed && closed == n) {
-            console.log("we are in");
-            niz.push(stack.join(""));
-            return;
-        }
-        if (open < n) {
-            stack.push("(");
-            recursive(open + 1, closed);
-            stack.pop();
-        }
-        if (closed < open) {
-            stack.push(")");
-            recursive(open, closed + 1);
-            stack.pop();
-        }
-    }
-    recursive(0, 0);
-    return niz;
-}
+//     function recursive(open, closed) {
+//         console.log(open == closed && closed == n);
+//         if (open == closed && closed == n) {
+//             console.log("we are in");
+//             niz.push(stack.join(""));
+//             return;
+//         }
+//         if (open < n) {
+//             stack.push("(");
+//             recursive(open + 1, closed);
+//             stack.pop();
+//         }
+//         if (closed < open) {
+//             stack.push(")");
+//             recursive(open, closed + 1);
+//             stack.pop();
+//         }
+//     }
+//     recursive(0, 0);
+//     return niz;
+// }
 
-console.log(generateParenthesis(3));
+// console.log(generateParenthesis(3));
+
+// function dailyTemperatures(temperatures) {
+//     let answers = [];
+//     for (let i = 0; i < temperatures.length; i++) {
+//         for (let j = i + 1; j < temperatures.length; j++) {
+//             if (temperatures[i] < temperatures[j]) {
+//                 answers.push(j - i);
+//                 break;
+//             }
+//         }
+//         if (answers.length < i + 1) {
+//             answers.push(0);
+//         }
+//     }
+//     return answers;
+// }
+
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
