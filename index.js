@@ -698,22 +698,37 @@
 // console.log(carFleet(12, [10, 8, 0, 5, 3], [2, 4, 1, 1, 3]));
 // console.log(carFleet(100, [0, 2, 4], [4, 2, 1]));
 
-function largestRectangleArea(heights) {
-    let max = 0;
-    let stack = [];
+// function largestRectangleArea(heights) {
+//     let max = 0;
+//     let stack = [];
 
-    heights.forEach((el, i) => {
-        let start = i;
-        while (stack.length > 0 && stack[stack.length - 1][1] > el) {
-            let [index, height] = stack.pop();
-            start = index;
-            max = Math.max(max, height * (i - index));
-        }
-        stack.push([start, el]);
-    });
-    for (let [i, el] of stack) {
-        max = Math.max(max, el * (heights.length - i));
+//     heights.forEach((el, i) => {
+//         let start = i;
+//         while (stack.length > 0 && stack[stack.length - 1][1] > el) {
+//             let [index, height] = stack.pop();
+//             start = index;
+//             max = Math.max(max, height * (i - index));
+//         }
+//         stack.push([start, el]);
+//     });
+//     for (let [i, el] of stack) {
+//         max = Math.max(max, el * (heights.length - i));
+//     }
+//     return max;
+// }
+// console.log(largestRectangleArea([2, 4]));
+
+let string = "A man, a plan, a canal: Panama";
+
+let help = "";
+for (let i of string) {
+    if (i.toLowerCase() != i.toUpperCase()) {
+        help += i.toLowerCase();
     }
-    return max;
 }
-console.log(largestRectangleArea([2, 4]));
+console.log(help);
+if (help == help.split("").reverse().join("")) {
+    return true;
+} else {
+    console.log(false);
+}
