@@ -679,3 +679,41 @@
 // }
 
 // console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
+
+// function carFleet(targe, position, speed) {
+//     let mapper = new Map();
+
+//     for (let i = 0; i < position.length; i++) {
+//         let counted = position[i] + speed[i];
+//         if (mapper.has(counted)) {
+//             continue;
+//         } else {
+//             mapper.set(counted, counted);
+//         }
+//     }
+//     console.log(mapper);
+//     return mapper.size;
+// }
+
+// console.log(carFleet(12, [10, 8, 0, 5, 3], [2, 4, 1, 1, 3]));
+// console.log(carFleet(100, [0, 2, 4], [4, 2, 1]));
+
+function largestRectangleArea(heights) {
+    let max = 0;
+    let stack = [];
+
+    heights.forEach((el, i) => {
+        let start = i;
+        while (stack.length > 0 && stack[stack.length - 1][1] > el) {
+            let [index, height] = stack.pop();
+            start = index;
+            max = Math.max(max, height * (i - index));
+        }
+        stack.push([start, el]);
+    });
+    for (let [i, el] of stack) {
+        max = Math.max(max, el * (heights.length - i));
+    }
+    return max;
+}
+console.log(largestRectangleArea([2, 4]));
