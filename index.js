@@ -811,24 +811,70 @@
 // }
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 
-function maxArea(height) {
+// max area exercise
+// function maxArea(height) {
+//     let l = 0;
+//     let r = height.length - 1;
+//     let max = 0;
+//     let mapper = new Map();
+
+//     for (let i = 0; i < height.length; i++) {
+//         mapper.set(i, height[i]);
+//     }
+
+//     while (l < r) {
+//         console.log(height[l], height[r]);
+//         let width = r - l;
+//         let counted = Math.min(height[l], height[r]) * width;
+
+//         max = Math.max(counted, max);
+
+//         if (height[l] < height[r]) {
+//             l++;
+//         } else {
+//             r--;
+//         }
+//     }
+//     return max;
+// }
+// console.log(maxArea([1, 8, 100, 2, 100, 4, 8, 3, 7]));
+function trap(height: number[]): number {
     let l = 0;
     let r = height.length - 1;
-    let max = 0;
+    let leftMax = 0;
+    let rightMax = 0;
+    let trapped = 0;
 
     while (l < r) {
-        console.log(height[l], height[r]);
-        let width = r - l;
-        let counted = Math.min(height[l], height[r]) * width;
-
-        max = Math.max(counted, max);
-
         if (height[l] < height[r]) {
+            if (height[l] > leftMax) {
+                leftMax = height[l];
+            } else {
+                trapped += leftMax - height[l];
+            }
             l++;
         } else {
+            if (height[r] > rightMax) {
+                rightMax = height[r];
+            } else {
+                trapped += rightMax - height[r];
+            }
             r--;
         }
     }
-    return max;
+    return trapped;
 }
-console.log(maxArea([1, 8, 100, 2, 100, 4, 8, 3, 7]));
+let height = [4, 2, 3, 5, 1, 9, 9, 6];
+
+console.log(trap(height));
+
+let bd = document.querySelector("body");
+for (let i = 0; i < height.length; i++) {
+    let div = document.createElement("div");
+    div.style.width = "50px";
+    div.style.background = "red";
+    div.style.border = "1px solid black";
+    div.innerHTML = `${height[i]}`;
+    div.style.height = `${height[i] * 80}px`;
+    bd.append(div);
+}

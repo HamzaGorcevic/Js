@@ -1,1 +1,1 @@
-max, height[j] * (j - 1)
+                console.log(max, height[l]);
