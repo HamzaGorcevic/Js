@@ -718,21 +718,6 @@
 // }
 // console.log(largestRectangleArea([2, 4]));
 
-// let string = "A man, a plan, a canal: Panama";
-
-// let help = "";
-// for (let i of string) {
-//     if (i.toLowerCase() != i.toUpperCase()) {
-//         help += i.toLowerCase();
-//     }
-// }
-// console.log(help);
-// if (help == help.split("").reverse().join("")) {
-//     return true;
-// } else {
-//     console.log(false);
-// }
-
 // function twoSum(numbers, target) {
 //     let last = numbers.length - 1;
 //     let niz = [];
@@ -751,61 +736,99 @@
 
 // console.log(twoSum([2, 7, 1, 2, 4], 9));
 
-function arraysHaveSameNumbers(arr1, arr2) {
-    // Check if the arrays have the same length
-    if (arr1.length !== arr2.length) {
-        return false;
-    }
+// threesum O(n^3) , bad solution
+// function threeSum(nums) {
+//     let niz = [];
+//     let mapper = new Map();
 
-    // Sort both arrays
-    const sortedArr1 = arr1.slice().sort();
-    const sortedArr2 = arr2.slice().sort();
+//     for (let i = 0; i < nums.length; i++) {
+//         for (let j = 0; j < nums.length; j++) {
+//             for (let k = 0; k < nums.length; k++) {
+//                 if (
+//                     nums[i] + nums[j] + nums[k] == 0 &&
+//                     i != j &&
+//                     j != k &&
+//                     i != k
+//                 ) {
+//                     let temp = [i, j, k].sort((a, b) => a - b).join("");
+//                     let helper = [nums[i], nums[j], nums[k]]
+//                         .sort((a, b) => a - b)
+//                         .join(",");
 
-    // Compare the sorted arrays
-    for (let i = 0; i < sortedArr1.length; i++) {
-        if (sortedArr1[i] !== sortedArr2[i]) {
-            return false;
+//                     if ([...mapper.values()].includes(helper)) {
+//                         continue;
+//                     } else {
+//                         mapper.set(temp, helper);
+//                         let help = [];
+//                         for (let i of helper.split(",")) {
+//                             help.push(parseInt(i));
+//                         }
+//                         niz.push(help);
+//                         help = [];
+//                     }
+//                     temp = "";
+//                     helper = "";
+//                 }
+//             }
+//         }
+//     }
+//     return niz;
+// }
+
+// function threeSum(nums) {
+//     let niz = [];
+
+//     const target = 0;
+
+//     nums.sort((a, b) => a - b);
+
+//     for (let i = 0; i < nums.length; i++) {
+//         if (i > 0 && nums[i] == nums[i - 1]) {
+//             // console.log(nums[i], nums[i - 1]);
+//             continue;
+//         }
+//         // console.log(nums[i]);
+//         let l = i + 1;
+
+//         let r = nums.length - 1;
+
+//         while (l < r) {
+//             console.log(l, r);
+//             let sum = nums[i] + nums[l] + nums[r];
+//             if (sum < 0) {
+//                 l++;
+//             } else if (sum > 0) {
+//                 r--;
+//             } else {
+//                 niz.push([nums[i], nums[l], nums[r]]);
+//                 l++;
+//                 while (l < r && nums[l] === nums[l - 1]) l++;
+//             }
+//         }
+//     }
+
+//     return niz;
+// }
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+function maxArea(height) {
+    let l = 0;
+    let r = height.length - 1;
+    let max = 0;
+
+    while (l < r) {
+        console.log(height[l], height[r]);
+        let width = r - l;
+        let counted = Math.min(height[l], height[r]) * width;
+
+        max = Math.max(counted, max);
+
+        if (height[l] < height[r]) {
+            l++;
+        } else {
+            r--;
         }
     }
-
-    return true;
+    return max;
 }
-function threeSum(nums) {
-    let niz = [];
-    let mapper = new Map();
-
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-            for (let k = 0; k < nums.length; k++) {
-                if (
-                    nums[i] + nums[j] + nums[k] == 0 &&
-                    i != j &&
-                    j != k &&
-                    i != k
-                ) {
-                    let temp = [i, j, k].sort((a, b) => a - b).join("");
-                    let helper = [nums[i], nums[j], nums[k]]
-                        .sort((a, b) => a - b)
-                        .join(",");
-
-                    if ([...mapper.values()].includes(helper)) {
-                        continue;
-                    } else {
-                        mapper.set(temp, helper);
-                        let help = [];
-                        for (let i of helper.split(",")) {
-                            help.push(parseInt(i));
-                        }
-                        niz.push(help);
-                        help = [];
-                    }
-                    temp = "";
-                    helper = "";
-                }
-            }
-        }
-    }
-    return niz;
-}
-
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(maxArea([1, 8, 100, 2, 100, 4, 8, 3, 7]));
