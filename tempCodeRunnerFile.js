@@ -1,1 +1,2 @@
-                console.log(max, height[l]);
+
+        helper.push(arr[i]);

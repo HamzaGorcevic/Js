@@ -838,43 +838,359 @@
 //     return max;
 // }
 // console.log(maxArea([1, 8, 100, 2, 100, 4, 8, 3, 7]));
-function trap(height: number[]): number {
-    let l = 0;
-    let r = height.length - 1;
-    let leftMax = 0;
-    let rightMax = 0;
-    let trapped = 0;
+// function trap(height: number[]): number {
+//     let l = 0;
+//     let r = height.length - 1;
+//     let leftMax = 0;
+//     let rightMax = 0;
+//     let trapped = 0;
 
-    while (l < r) {
-        if (height[l] < height[r]) {
-            if (height[l] > leftMax) {
-                leftMax = height[l];
+//     while (l < r) {
+//         if (height[l] < height[r]) {
+//             if (height[l] > leftMax) {
+//                 leftMax = height[l];
+//             } else {
+//                 trapped += leftMax - height[l];
+//             }
+//             l++;
+//         } else {
+//             if (height[r] > rightMax) {
+//                 rightMax = height[r];
+//             } else {
+//                 trapped += rightMax - height[r];
+//             }
+//             r--;
+//         }
+//     }
+//     return trapped;
+// }
+// let height = [4, 2, 3, 5, 1, 9, 9, 6];
+
+// console.log(trap(height));
+
+// let bd = document.querySelector("body");
+// for (let i = 0; i < height.length; i++) {
+//     let div = document.createElement("div");
+//     div.style.width = "50px";
+//     div.style.background = "red";
+//     div.style.border = "1px solid black";
+//     div.innerHTML = `${height[i]}`;
+//     div.style.height = `${height[i] * 80}px`;
+//     bd.append(div);
+// }
+
+// function threeSum(nums) {
+//     let niz = [];
+
+//     nums.sort((a, b) => a - b);
+
+//     for (let i = 0; i < nums.length; i++) {
+//         if (i > 0 && nums[i] == nums[i - 1]) {
+//             continue;
+//         }
+
+//         let l = i + 1;
+//         let r = nums.length - 1;
+//         console.log(i, nums[i]);
+//         while (l < r) {
+//             let sum = nums[i] + nums[l] + nums[r];
+//             console.log(nums[i], nums[l], nums[r], sum);
+//             if (sum > 0) {
+//                 r--;
+//             } else if (sum < 0) {
+//                 l++;
+//             } else {
+//                 niz.push([nums[i], nums[l], nums[r]]);
+//                 l++;
+//             }
+//         }
+//     }
+
+//     return niz;
+// }
+
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+// let arr = [
+//     [1, 3, 5, 7],
+//     [10, 11, 16, 20],
+//     [23, 30, 34, 60],
+// ];
+
+// console.log(...arr);
+// function searchMatrix(matrix, target) {
+//     let l = 0;
+//     let r = matrix.length - 1;
+//     let checker = false;
+
+//     while (l <= r) {
+//         let m = (l + r) / 2;
+
+//         let result = matrix[m].reduce((a, b) => a + b, 0);
+//         for (let i = 0; i < matrix[m].length; i++) {
+//             if (matrix[m][i] == target) {
+//                 checker = true;
+//             }
+//         }
+//         if (result < target) {
+//             l = m + 1;
+//         } else {
+//             r = m - 1;
+//         }
+//     }
+//     return checker;
+// }
+
+// console.log(
+//     searchMatrix([
+//         [1, 3, 5, 7],
+//         [10, 11, 16, 20],
+//         [23, 30, 34, 60],
+//     ])
+// );
+
+// let arr = [
+//     [1, 4],
+//     [3, 4],
+//     [3, 10],
+// ];
+// let result = [1, k10];
+// function solution(arr) {
+//     let value = [];
+
+//     if (
+//         arr[0][0] != arr[1][0] &&
+//         arr[0][0] != arr[2][1] &&
+//         arr[0][0] != arr[1][0]
+//     ) {
+//         value.push(arr[0][0]);
+//     } else {
+//         value.push(arr[1][0]);
+//     }
+
+//     console.log(value);
+// }
+// console.log(solution(arr));
+
+// let given = [
+//     [1, 3, 1],
+//     [3, 5, 0],
+//     [5, 4, 0],
+//     [2, 5, 0],
+// ];
+
+// function solution(given, n) {
+//     let mapper = new Map(Array.from({ length: n }, (_, i) => [i + 1, "?"]));
+//     let i = 2;
+//     while (i > 0) {
+//         i--;
+//         for (let i of given) {
+//             if (i[2] === 1) {
+//                 mapper.set(i[0], "O");
+//                 mapper.set(i[1], "O");
+//             } else {
+//                 if (mapper.get(i[0] == "O")) {
+//                     mapper.set(i[1], "X");
+//                 } else if (mapper.get(i[1] == "O")) {
+//                     mapper.set(i[0], "X");
+//                 } else if (mapper.get(i[1]) == "?" && mapper.get(i[0]) == "O") {
+//                     mapper.set(i[1], "X");
+//                 } else if (mapper.get(i[0]) == "?" && mapper.get(i[0]) == "O") {
+//                     mapper.set(i[0], "X");
+//                 }
+//             }
+//         }
+//     }
+//     let string = "";
+//     for (i of mapper.values()) {
+//         string += i;
+//     }
+
+//     return string;
+// }
+
+// given = [
+//     [5, 6, 0],
+//     [1, 3, 1],
+//     [1, 5, 0],
+//     [7, 6, 0],
+//     [3, 7, 1],
+//     [2, 5, 0],
+// ];
+
+// console.log(solution(given, 7));
+
+// #include <iostream>
+// #include <vector>
+// #include <unordered_map>
+// #include <string>
+
+// using namespace std;
+
+// string solution(vector<vector<int>>& given, int n) {
+//     unordered_map<int, char> mapper;
+//     for (int i = 1; i <= n; i++) {
+//         mapper[i] = '?';
+//     }
+
+//     int i = 2;
+//     while (i > 0) {
+//         i--;
+//         for (auto& item : given) {
+//             int x = item[0];
+//             int y = item[1];
+//             int z = item[2];
+
+//             if (z == 1) {
+//                 mapper[x] = 'O';
+//                 mapper[y] = 'O';
+//             } else {
+//                 if (mapper[x] == 'O') {
+//                     mapper[y] = 'X';
+//                 } else if (mapper[y] == 'O') {
+//                     mapper[x] = 'X';
+//                 } else if (mapper[y] == '?' && mapper[x] == 'O') {
+//                     mapper[y] = 'X';
+//                 } else if (mapper[x] == '?' && mapper[y] == 'O') {
+//                     mapper[x] = 'X';
+//                 }
+//             }
+//         }
+//     }
+
+//     string result = "";
+//     for (int i = 1; i <= n; i++) {
+//         result += mapper[i];
+//     }
+
+//     return result;
+// }
+
+function solution(arr, n) {
+    let mapper = new Map();
+    for (let i = 1; i <= n; i++) {
+        mapper.set(i, [0]);
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (mapper.has(arr[i][0] && !mapper.get(arr[i][0]) == 0)) {
+            let help = mapper.get(arr[i][0]);
+
+            if (arr[i][1] == -1) {
+                help.pop();
             } else {
-                trapped += leftMax - height[l];
+                help.push(arr[i][1]);
             }
-            l++;
-        } else {
-            if (height[r] > rightMax) {
-                rightMax = height[r];
-            } else {
-                trapped += rightMax - height[r];
-            }
-            r--;
+            mapper.set(arr[i][0], help);
         }
     }
-    return trapped;
+    let sortedArray = Array.from(mapper.keys()).sort(
+        (a, b) =>
+            mapper.get(b)[mapper.get(b).length - 1] -
+            mapper.get(a)[mapper.get(a).length - 1]
+    );
+    console.log(mapper);
+    return sortedArray;
 }
-let height = [4, 2, 3, 5, 1, 9, 9, 6];
 
-console.log(trap(height));
+console.log(
+    solution(
+        [
+            [1, -1],
+            [2, -1],
+            [3, -1],
+        ],
+        3
+    )
+);
 
-let bd = document.querySelector("body");
-for (let i = 0; i < height.length; i++) {
-    let div = document.createElement("div");
-    div.style.width = "50px";
-    div.style.background = "red";
-    div.style.border = "1px solid black";
-    div.innerHTML = `${height[i]}`;
-    div.style.height = `${height[i] * 80}px`;
-    bd.append(div);
-}
+// console.log(
+//     solution(
+// [
+//     [4, 120],
+//     [3, 200],
+//     [4, 220],
+//     [4, 150],
+//     [4, 250],
+//     [2, 150],
+//     [4, -1],
+//     [4, -1],
+//     [2, 200],
+//     [4, 300],
+//     [4, 200],
+//     [2, 150],
+//     [4, -1],
+//     [2, -1],
+//     [4, 100],
+//     [4, -1],
+//     [3, -1],
+//     [2, -1],
+//     [4, -1],
+//     [4, -1],
+// ],
+//         4
+//     )
+// );
+
+// function solution(n, arr) {
+//     let matrix = [];
+//     let helper = [];
+
+//     for (let i = 0; i < arr.length; i++) {
+//         helper.push(arr[i]);
+//         if (helper.length === 5) {
+//             matrix.push(helper);
+//             helper = [];
+//         }
+//     }
+
+//     let x = Math.floor(n / 2);
+//     let y = Math.floor(n / 2);
+//     let visited = [];
+//     for (let i = 0; i < n; i++) {
+//         visited[i] = [];
+//         for (let j = 0; j < n; j++) {
+//             visited[i][j] = false;
+//         }
+//     }
+//     visited[x][y];
+
+//     let sum = matrix[x][y];
+
+//     function check(x, y) {
+//         let directions = [
+//             [1, 0],
+//             [0, 1],
+//             [-1, 0],
+//             [0, -1],
+//         ];
+//         let min = 999;
+
+//         let helpX, helpY;
+//         for ([i, j] of directions) {
+//             let novix = x + i;
+//             let noviy = y + j;
+
+//             if (novix < 0 || novix >= n || noviy < 0 || noviy >= n) {
+//                 return sum;
+//             }
+
+//             if (min > matrix[novix][noviy] && !visited[novix][noviy]) {
+//                 visited[novix][noviy] = true;
+//                 min = matrix[novix][noviy];
+//                 helpX = novix;
+//                 helpY = noviy;
+//             }
+//         }
+
+//         sum += min;
+//         return check(helpX, helpY);
+//     }
+
+//     return check(x, y);
+// }
+
+// const arr = [
+//     9, 3, 9, 9, 9, 5, 2, 7, 8, 9, 8, 7, 5, 8, 9, 6, 1, 8, 7, 9, 9, 9, 8, 9, 9,
+// ];
+
+// console.log(solution(5, arr));
