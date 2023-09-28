@@ -1068,11 +1068,13 @@
 
 function solution(arr, n) {
     let mapper = new Map();
+    console.log(arr);
     for (let i = 1; i <= n; i++) {
         mapper.set(i, [0]);
     }
+
     for (let i = 0; i < arr.length; i++) {
-        if (mapper.has(arr[i][0] && !mapper.get(arr[i][0]) == 0)) {
+        if (mapper.has(arr[i][0])) {
             let help = mapper.get(arr[i][0]);
 
             if (arr[i][1] == -1) {
@@ -1083,53 +1085,44 @@ function solution(arr, n) {
             mapper.set(arr[i][0], help);
         }
     }
+
+    console.log(mapper);
     let sortedArray = Array.from(mapper.keys()).sort(
         (a, b) =>
             mapper.get(b)[mapper.get(b).length - 1] -
             mapper.get(a)[mapper.get(a).length - 1]
     );
-    console.log(mapper);
     return sortedArray;
 }
 
 console.log(
     solution(
         [
-            [1, -1],
+            [4, 120],
+            [3, 200],
+            [4, 220],
+            [4, 150],
+            [4, 250],
+            [2, 150],
+            [4, -1],
+            [4, -1],
+            [2, 200],
+            [4, 300],
+            [4, 200],
+            [2, 150],
+            [4, -1],
             [2, -1],
+            [4, 100],
+            [4, -1],
             [3, -1],
+            [2, -1],
+            [4, -1],
+            [4, -1],
         ],
-        3
+
+        4
     )
 );
-
-// console.log(
-//     solution(
-// [
-//     [4, 120],
-//     [3, 200],
-//     [4, 220],
-//     [4, 150],
-//     [4, 250],
-//     [2, 150],
-//     [4, -1],
-//     [4, -1],
-//     [2, 200],
-//     [4, 300],
-//     [4, 200],
-//     [2, 150],
-//     [4, -1],
-//     [2, -1],
-//     [4, 100],
-//     [4, -1],
-//     [3, -1],
-//     [2, -1],
-//     [4, -1],
-//     [4, -1],
-// ],
-//         4
-//     )
-// );
 
 // function solution(n, arr) {
 //     let matrix = [];
