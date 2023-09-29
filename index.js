@@ -929,7 +929,7 @@
 //         let result = matrix[m].reduce((a, b) => a + b, 0);
 //         for (let i = 0; i < matrix[m].length; i++) {
 //             if (matrix[m][i] == target) {
-//                 checker = true;
+//                 reutrn true
 //             }
 //         }
 //         if (result < target) {
@@ -979,46 +979,43 @@
 //     [2, 5, 0],
 // ];
 
-// function solution(given, n) {
-//     let mapper = new Map(Array.from({ length: n }, (_, i) => [i + 1, "?"]));
-//     let i = 2;
-//     while (i > 0) {
-//         i--;
-//         for (let i of given) {
-//             if (i[2] === 1) {
-//                 mapper.set(i[0], "O");
-//                 mapper.set(i[1], "O");
-//             } else {
-//                 if (mapper.get(i[0] == "O")) {
-//                     mapper.set(i[1], "X");
-//                 } else if (mapper.get(i[1] == "O")) {
-//                     mapper.set(i[0], "X");
-//                 } else if (mapper.get(i[1]) == "?" && mapper.get(i[0]) == "O") {
-//                     mapper.set(i[1], "X");
-//                 } else if (mapper.get(i[0]) == "?" && mapper.get(i[0]) == "O") {
-//                     mapper.set(i[0], "X");
-//                 }
-//             }
-//         }
-//     }
-//     let string = "";
-//     for (i of mapper.values()) {
-//         string += i;
-//     }
+function solution(given, n) {
+    let mapper = new Map(Array.from({ length: n }, (_, i) => [i + 1, "?"]));
+    let i = 2;
+    while (i > 0) {
+        i--;
+        for (let i of given) {
+            if (i[2] === 1) {
+                mapper.set(i[0], "O");
+                mapper.set(i[1], "O");
+            } else {
+                if (mapper.get(i[0]) == "O") {
+                    mapper.set(i[1], "X");
+                } else if (mapper.get(i[1] == "O")) {
+                    mapper.set(i[0], "X");
+                }
+            }
+        }
+    }
+    let string = "";
+    for (i of mapper.values()) {
+        string += i;
+    }
+    return string;
+}
 
-//     return string;
-// }
+//
 
-// given = [
-//     [5, 6, 0],
-//     [1, 3, 1],
-//     [1, 5, 0],
-//     [7, 6, 0],
-//     [3, 7, 1],
-//     [2, 5, 0],
-// ];
+given = [
+    [5, 6, 0],
+    [1, 3, 1],
+    [1, 5, 0],
+    [7, 6, 0],
+    [3, 7, 1],
+    [2, 5, 0],
+];
 
-// console.log(solution(given, 7));
+console.log("returend ", solution(given, 7));
 
 // #include <iostream>
 // #include <vector>
@@ -1066,63 +1063,63 @@
 //     return result;
 // }
 
-function solution(arr, n) {
-    let mapper = new Map();
-    console.log(arr);
-    for (let i = 1; i <= n; i++) {
-        mapper.set(i, [0]);
-    }
+// function solution(arr, n) {
+//     let mapper = new Map();
+//     console.log(arr);
+//     for (let i = 1; i <= n; i++) {
+//         mapper.set(i, [0]);
+//     }
 
-    for (let i = 0; i < arr.length; i++) {
-        if (mapper.has(arr[i][0])) {
-            let help = mapper.get(arr[i][0]);
+//     for (let i = 0; i < arr.length; i++) {
+//         if (mapper.has(arr[i][0])) {
+//             let help = mapper.get(arr[i][0]);
 
-            if (arr[i][1] == -1) {
-                help.pop();
-            } else {
-                help.push(arr[i][1]);
-            }
-            mapper.set(arr[i][0], help);
-        }
-    }
+//             if (arr[i][1] == -1) {
+//                 help.pop();
+//             } else {
+//                 help.push(arr[i][1]);
+//             }
+//             mapper.set(arr[i][0], help);
+//         }
+//     }
 
-    console.log(mapper);
-    let sortedArray = Array.from(mapper.keys()).sort(
-        (a, b) =>
-            mapper.get(b)[mapper.get(b).length - 1] -
-            mapper.get(a)[mapper.get(a).length - 1]
-    );
-    return sortedArray;
-}
+//     console.log(mapper);
+//     let sortedArray = Array.from(mapper.keys()).sort(
+//         (a, b) =>
+//             mapper.get(b)[mapper.get(b).length - 1] -
+//             mapper.get(a)[mapper.get(a).length - 1]
+//     );
+//     return sortedArray;
+// }
 
-console.log(
-    solution(
-        [
-            [4, 120],
-            [3, 200],
-            [4, 220],
-            [4, 150],
-            [4, 250],
-            [2, 150],
-            [4, -1],
-            [4, -1],
-            [2, 200],
-            [4, 300],
-            [4, 200],
-            [2, 150],
-            [4, -1],
-            [2, -1],
-            [4, 100],
-            [4, -1],
-            [3, -1],
-            [2, -1],
-            [4, -1],
-            [4, -1],
-        ],
+// console.log(
+//     solution(
+//         [
+//             [4, 120],
+//             [3, 200],
+//             [4, 220],
+//             [4, 150],
+//             [4, 250],
+//             [2, 150],
+//             [4, -1],
+//             [4, -1],
+//             [2, 200],
+//             [4, 300],
+//             [4, 200],
+//             [2, 150],
+//             [4, -1],
+//             [2, -1],
+//             [4, 100],
+//             [4, -1],
+//             [3, -1],
+//             [2, -1],
+//             [4, -1],
+//             [4, -1],
+//         ],
 
-        4
-    )
-);
+//         4
+//     )
+// );
 
 // function solution(n, arr) {
 //     let matrix = [];
