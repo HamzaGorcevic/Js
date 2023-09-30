@@ -979,43 +979,43 @@
 //     [2, 5, 0],
 // ];
 
-function solution(given, n) {
-    let mapper = new Map(Array.from({ length: n }, (_, i) => [i + 1, "?"]));
-    let i = 2;
-    while (i > 0) {
-        i--;
-        for (let i of given) {
-            if (i[2] === 1) {
-                mapper.set(i[0], "O");
-                mapper.set(i[1], "O");
-            } else {
-                if (mapper.get(i[0]) == "O") {
-                    mapper.set(i[1], "X");
-                } else if (mapper.get(i[1] == "O")) {
-                    mapper.set(i[0], "X");
-                }
-            }
-        }
-    }
-    let string = "";
-    for (i of mapper.values()) {
-        string += i;
-    }
-    return string;
-}
+// function solution(given, n) {
+//     let mapper = new Map(Array.from({ length: n }, (_, i) => [i + 1, "?"]));
+//     let i = 2;
+//     while (i > 0) {
+//         i--;
+//         for (let i of given) {
+//             if (i[2] === 1) {
+//                 mapper.set(i[0], "O");
+//                 mapper.set(i[1], "O");
+//             } else {
+//                 if (mapper.get(i[0]) == "O") {
+//                     mapper.set(i[1], "X");
+//                 } else if (mapper.get(i[1] == "O")) {
+//                     mapper.set(i[0], "X");
+//                 }
+//             }
+//         }
+//     }
+//     let string = "";
+//     for (i of mapper.values()) {
+//         string += i;
+//     }
+//     return string;
+// }
 
-//
+// //
 
-given = [
-    [5, 6, 0],
-    [1, 3, 1],
-    [1, 5, 0],
-    [7, 6, 0],
-    [3, 7, 1],
-    [2, 5, 0],
-];
+// given = [
+//     [5, 6, 0],
+//     [1, 3, 1],
+//     [1, 5, 0],
+//     [7, 6, 0],
+//     [3, 7, 1],
+//     [2, 5, 0],
+// ];
 
-console.log("returend ", solution(given, 7));
+// console.log("returend ", solution(given, 7));
 
 // #include <iostream>
 // #include <vector>
@@ -1184,3 +1184,47 @@ console.log("returend ", solution(given, 7));
 // ];
 
 // console.log(solution(5, arr));
+//lg
+
+//
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+
+var searchMatrix = function (matrix, target) {
+    let l = 0;
+    let r = matrix.length - 1;
+
+    while (l <= r) {
+        let m = Math.floor((l + r) / 2);
+        let result = matrix[m][0];
+        let lI = 0;
+        let rI = matrix[m].length - 1;
+        while (lI <= rI) {
+            let mI = Math.floor((lI + rI) / 2);
+            console.log(mI);
+            if (matrix[m][mI] < target) {
+                lI = mI + 1;
+            } else if (matrix[m][mI] > target) {
+                rI = mI - 1;
+            } else {
+                return true;
+            }
+        }
+
+        if (result < target) {
+            l = m + 1;
+        } else if (result > target) {
+            r = m - 1;
+        } else {
+            return true;
+        }
+    }
+
+    return false;
+};
+
+console.log("result is=", searchMatrix([[1]], 0));
