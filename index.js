@@ -1188,43 +1188,65 @@
 
 //
 
-/**
- * @param {number[][]} matrix
- * @param {number} target
- * @return {boolean}
- */
+// /**
+//  * @param {number[][]} matrix
+//  * @param {number} target
+//  * @return {boolean}
+//  */
 
-var searchMatrix = function (matrix, target) {
+// var searchMatrix = function (matrix, target) {
+//     let l = 0;
+//     let r = matrix.length - 1;
+
+//     while (l <= r) {
+//         let m = Math.floor((l + r) / 2);
+//         let result = matrix[m][0];
+//         let lI = 0;
+//         let rI = matrix[m].length - 1;
+//         while (lI <= rI) {
+//             let mI = Math.floor((lI + rI) / 2);
+//             console.log(mI);
+//             if (matrix[m][mI] < target) {
+//                 lI = mI + 1;
+//             } else if (matrix[m][mI] > target) {
+//                 rI = mI - 1;
+//             } else {
+//                 return true;
+//             }
+//         }
+
+//         if (result < target) {
+//             l = m + 1;
+//         } else if (result > target) {
+//             r = m - 1;
+//         } else {
+//             return true;
+//         }
+//     }
+
+//     return false;
+// };
+
+// console.log("result is=", searchMatrix([[1]], 0));
+
+var minEatingSpeed = function (piles, h) {
     let l = 0;
-    let r = matrix.length - 1;
+    let r = Math.max(...piles);
 
-    while (l <= r) {
-        let m = Math.floor((l + r) / 2);
-        let result = matrix[m][0];
-        let lI = 0;
-        let rI = matrix[m].length - 1;
-        while (lI <= rI) {
-            let mI = Math.floor((lI + rI) / 2);
-            console.log(mI);
-            if (matrix[m][mI] < target) {
-                lI = mI + 1;
-            } else if (matrix[m][mI] > target) {
-                rI = mI - 1;
-            } else {
-                return true;
-            }
+    while (l < r) {
+        let m = Math.floor((r + l) / 2);
+        let counter = 0;
+        for (let i of piles) {
+            counter += Math.ceil(i / m);
         }
 
-        if (result < target) {
+        if (counter > h) {
             l = m + 1;
-        } else if (result > target) {
-            r = m - 1;
         } else {
-            return true;
+            r = m - 1;
         }
     }
-
-    return false;
+    return l;
 };
 
-console.log("result is=", searchMatrix([[1]], 0));
+console.log(minEatingSpeed([3, 6, 7, 11], 8));
