@@ -1260,26 +1260,32 @@ var search = function (nums, target) {
         return 0;
     }
 
+    let x = 0;
     while (l <= r) {
         let m = Math.floor((l + r) / 2);
-
         if (nums[m] == target) {
             return m;
         }
+        console.log(m);
         if (nums[l] < nums[m]) {
-            if (nums[m] < target) {
+            if (target < nums[l] || target > nums[m]) {
                 l = m + 1;
-            } else if (nums[m] > target) {
+            } else {
                 r = m - 1;
             }
         } else {
-            if (nums[m] < target) {
-                l = m + 1;
-            } else if (nums[m] > target) {
+            console.log("x=", x);
+            if (target == nums[r]) {
+                return r;
+            }
+            if (target > nums[r] || target < nums[m]) {
                 r = m - 1;
+            } else {
+                l = m + 1;
             }
         }
+        x++;
     }
     return -1;
 };
-console.log(search([4, 5, 6, 7, 0, 1, 2], 0));
+console.log(search([5, 1, 2, 3, 4], 1));
