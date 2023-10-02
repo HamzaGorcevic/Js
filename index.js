@@ -1229,24 +1229,57 @@
 
 // console.log("result is=", searchMatrix([[1]], 0));
 
-var minEatingSpeed = function (piles, h) {
+// var minEatingSpeed = function (piles, h) {
+//     let l = 0;
+//     let r = Math.max(...piles);
+
+//     while (l < r) {
+//         let m = Math.floor((r + l) / 2);
+//         let counter = 0;
+//         for (let i of piles) {
+//             counter += Math.ceil(i / m);
+//         }
+
+//         if (counter > h) {
+//             l = m + 1;
+//         } else {
+//             r = m - 1;
+//         }
+//     }
+//     return l;
+// };
+
+// console.log(minEatingSpeed([3, 6, 7, 11], 8));
+
+//https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/
+
+var search = function (nums, target) {
     let l = 0;
-    let r = Math.max(...piles);
+    let r = nums.length - 1;
+    if (nums[0] == target) {
+        return 0;
+    }
 
-    while (l < r) {
-        let m = Math.floor((r + l) / 2);
-        let counter = 0;
-        for (let i of piles) {
-            counter += Math.ceil(i / m);
+    while (l <= r) {
+        let m = Math.floor((l + r) / 2);
+
+        if (nums[m] == target) {
+            return m;
         }
-
-        if (counter > h) {
-            l = m + 1;
+        if (nums[l] < nums[m]) {
+            if (nums[m] < target) {
+                l = m + 1;
+            } else if (nums[m] > target) {
+                r = m - 1;
+            }
         } else {
-            r = m - 1;
+            if (nums[m] < target) {
+                l = m + 1;
+            } else if (nums[m] > target) {
+                r = m - 1;
+            }
         }
     }
-    return l;
+    return -1;
 };
-
-console.log(minEatingSpeed([3, 6, 7, 11], 8));
+console.log(search([4, 5, 6, 7, 0, 1, 2], 0));
