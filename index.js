@@ -1260,13 +1260,11 @@ var search = function (nums, target) {
         return 0;
     }
 
-    let x = 0;
     while (l <= r) {
         let m = Math.floor((l + r) / 2);
         if (nums[m] == target) {
             return m;
         }
-        console.log(m);
         if (nums[l] < nums[m]) {
             if (target < nums[l] || target > nums[m]) {
                 l = m + 1;
@@ -1274,7 +1272,6 @@ var search = function (nums, target) {
                 r = m - 1;
             }
         } else {
-            console.log("x=", x);
             if (target == nums[r]) {
                 return r;
             }
@@ -1284,7 +1281,6 @@ var search = function (nums, target) {
                 l = m + 1;
             }
         }
-        x++;
     }
     return -1;
 };
