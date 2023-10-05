@@ -1356,51 +1356,34 @@
  * @return {number}
  */
 var findMedianSortedArrays = function (nums1, nums2) {
-    let last = nums1[nums1.length - 1];
-    let first = nums2[0];
-    let lele = [];
-    if (nums1.length > nums2.length) {
-        lele = nums1;
-    } else {
-        lele = nums2;
-    }
+    let merged = [];
+    let i = 0,
+        j = 0;
 
-    if (nums1[0] > nums2[nums2.length - 1]) {
-        console.log("in");
-        nums2.push(...nums1);
-    } else if (last <= first || last === undefined) {
-        console.log("in2");
-        nums2.unshift(...nums1);
-    } else if (first === undefined) {
-        console.log("in3");
-        nums2 = nums1;
-    } else {
-        console.log("in4");
-        let l = 0;
-        let r = lele.length - 1;
-        console.log(first);
-        while (l <= r) {
-            let m = Math.floor((l + r) / 2);
-            if (lele[m] > last) {
-                l = m + 1;
-            } else {
-                nums2 = lele.splice(m, 0, ...nums1);
-                break;
-            }
+    while (i < nums1.length && j < nums2.length) {
+        if (nums1[i] < nums2[j]) {
+            merged.push(nums1[i++]);
+        } else {
+            merged.push(nums2[j++]);
         }
     }
 
-    console.log(nums2);
+    while (i < nums1.length) merged.push(nums1[i++]);
+    while (j < nums2.length) merged.push(nums2[j++]);
 
-    if (nums2.length % 2 === 0) {
-        return (
-            (nums2[Math.floor(nums2.length / 2) - 1] +
-                nums2[Math.floor(nums2.length / 2)]) /
-            2
-        );
+    let mid = Math.floor(merged.length / 2);
+    if (merged.length % 2 === 0) {
+        return (merged[mid - 1] + merged[mid]) / 2;
     } else {
-        return nums2[Math.floor(nums2.length / 2)];
+        return merged[mid];
     }
 };
+console.log(findMedianSortedArrays([3], [-2, -1]));
 
-console.log(findMedianSortedArrays([1, 3], [2]));
+function createCounter(n) {
+    return function () {
+        return ++n;
+    };
+}
+
+console.log(createCounter(createCounter(10)())());
