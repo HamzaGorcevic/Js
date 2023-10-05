@@ -1132,6 +1132,7 @@
 //             helper = [];
 //         }
 //     }
+//     console.log(matrix);
 
 //     let x = Math.floor(n / 2);
 //     let y = Math.floor(n / 2);
@@ -1164,7 +1165,11 @@
 //                 return sum;
 //             }
 
-//             if (min > matrix[novix][noviy] && !visited[novix][noviy]) {
+//             if (
+//                 min > matrix[novix][noviy] &&
+//                 !visited[novix][noviy] &&
+//                 i != j
+//             ) {
 //                 visited[novix][noviy] = true;
 //                 min = matrix[novix][noviy];
 //                 helpX = novix;
@@ -1253,35 +1258,149 @@
 
 //https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/
 
-var search = function (nums, target) {
-    let l = 0;
-    let r = nums.length - 1;
-    if (nums[0] == target) {
-        return 0;
+// var search = function (nums, target) {
+//     let l = 0;
+//     let r = nums.length - 1;
+//     if (nums[0] == target) {
+//         return 0;
+//     }
+
+//     while (l <= r) {
+//         let m = Math.floor((l + r) / 2);
+//         if (nums[m] == target) {
+//             return m;
+//         }
+//         if (nums[l] < nums[m]) {
+//             if (target < nums[l] || target > nums[m]) {
+//                 l = m + 1;
+//             } else {
+//                 r = m - 1;
+//             }
+//         } else {
+//             if (target == nums[r]) {
+//                 return r;
+//             }
+//             if (target > nums[r] || target < nums[m]) {
+//                 r = m - 1;
+//             } else {
+//                 l = m + 1;
+//             }
+//         }
+//     }
+//     return -1;
+// };
+// console.log(search([5, 1, 2, 3, 4], 1));
+
+// class TimeMap {
+//     constructor() {
+//         this.mapper = new Map();
+//     }
+
+//     set(key, value, timeStamp) {
+//         if (this.mapper.has(key)) {
+//             let temp = this.mapper.get(key);
+//             temp.push([value, timeStamp]);
+//         } else {
+//             this.mapper.set(key, [[value, timeStamp]]);
+//         }
+
+//         // arr.push({key:[value,timeStamp]})
+//     }
+//     get(key, timeStamp) {
+//         if (this.mapper.has(key)) {
+//             let temp = this.mapper.get(key);
+//             let l = 0;
+//             let r = temp.length - 1;
+//             let min = ["", 999];
+//             if (temp[0][1] > timeStamp) {
+//                 return "";
+//             }
+//             while (l <= r) {
+//                 let m = Math.floor((l + r) / 2);
+
+//                 if (temp[m][1] <= timeStamp) {
+//                     min = [temp[m][0], Math.min(min[1], temp[m][1])];
+//                     l = m + 1;
+//                 } else if (temp[m][1] > timeStamp) {
+//                     r = m - 1;
+//                 }
+//             }
+//             return min[0];
+//         } else {
+//             return "";
+//         }
+//     }
+// }
+
+// const testinTime = new TimeMap();
+// testinTime.set("foo", "bar", 1);
+// testinTime.get("foo", 1);
+
+// testinTime.get("foo", 3);
+// testinTime.set("foo", "bar2", 4);
+// testinTime.get("foo", 4);
+
+// testinTime.get("foo", 5);
+// testinTime.set("foo", "zigzag", 7);
+// testinTime.set("foo", "conundrum", 8);
+// testinTime.set("foo", "hyperbole", 9);
+// testinTime.set("foo", "silhouette", 10);
+
+// testinTime.set("foo", "blasphemy", 11);
+
+// console.log(testinTime.get("foo", 13));
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function (nums1, nums2) {
+    let last = nums1[nums1.length - 1];
+    let first = nums2[0];
+    let lele = [];
+    if (nums1.length > nums2.length) {
+        lele = nums1;
+    } else {
+        lele = nums2;
     }
 
-    while (l <= r) {
-        let m = Math.floor((l + r) / 2);
-        if (nums[m] == target) {
-            return m;
-        }
-        if (nums[l] < nums[m]) {
-            if (target < nums[l] || target > nums[m]) {
+    if (nums1[0] > nums2[nums2.length - 1]) {
+        console.log("in");
+        nums2.push(...nums1);
+    } else if (last <= first || last === undefined) {
+        console.log("in2");
+        nums2.unshift(...nums1);
+    } else if (first === undefined) {
+        console.log("in3");
+        nums2 = nums1;
+    } else {
+        console.log("in4");
+        let l = 0;
+        let r = lele.length - 1;
+        console.log(first);
+        while (l <= r) {
+            let m = Math.floor((l + r) / 2);
+            if (lele[m] > last) {
                 l = m + 1;
             } else {
-                r = m - 1;
-            }
-        } else {
-            if (target == nums[r]) {
-                return r;
-            }
-            if (target > nums[r] || target < nums[m]) {
-                r = m - 1;
-            } else {
-                l = m + 1;
+                nums2 = lele.splice(m, 0, ...nums1);
+                break;
             }
         }
     }
-    return -1;
+
+    console.log(nums2);
+
+    if (nums2.length % 2 === 0) {
+        return (
+            (nums2[Math.floor(nums2.length / 2) - 1] +
+                nums2[Math.floor(nums2.length / 2)]) /
+            2
+        );
+    } else {
+        return nums2[Math.floor(nums2.length / 2)];
+    }
 };
-console.log(search([5, 1, 2, 3, 4], 1));
+
+console.log(findMedianSortedArrays([1, 3], [2]));
