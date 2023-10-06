@@ -1063,33 +1063,32 @@
 //     return result;
 // }
 
-// function solution(arr, n) {
-//     let mapper = new Map();
-//     console.log(arr);
+// function solution(delivery, n) {
+//     let obj = {};
+
 //     for (let i = 1; i <= n; i++) {
-//         mapper.set(i, [0]);
+//         obj[i] = [0];
 //     }
 
-//     for (let i = 0; i < arr.length; i++) {
-//         if (mapper.has(arr[i][0])) {
-//             let help = mapper.get(arr[i][0]);
+//     for (let i = 0; i < delivery.length; i++) {
+//         if (obj.hasOwnProperty(delivery[i][0])) {
+//             let help = obj[delivery[i][0]];
 
-//             if (arr[i][1] == -1) {
+//             if (delivery[i][1] == -1) {
 //                 help.pop();
 //             } else {
-//                 help.push(arr[i][1]);
+//                 help.push(delivery[i][1]);
 //             }
-//             mapper.set(arr[i][0], help);
+//             obj[delivery[i][0]] = help;
 //         }
 //     }
+//     console.log(obj);
 
-//     console.log(mapper);
-//     let sortedArray = Array.from(mapper.keys()).sort(
-//         (a, b) =>
-//             mapper.get(b)[mapper.get(b).length - 1] -
-//             mapper.get(a)[mapper.get(a).length - 1]
+//     let sortedArray = Object.keys(obj).sort(
+//         (a, b) => obj[b][obj[b].length - 1] - obj[a][obj[a].length - 1]
 //     );
-//     return sortedArray;
+
+//     return sortedArray.map(Number);
 // }
 
 // console.log(
@@ -1127,12 +1126,13 @@
 
 //     for (let i = 0; i < arr.length; i++) {
 //         helper.push(arr[i]);
-//         if (helper.length === 5) {
+//         if (helper.length === n) {
 //             matrix.push(helper);
 //             helper = [];
 //         }
 //     }
-//     console.log(matrix);
+//     let levels = separate(n);
+//     console.log(levels);
 
 //     let x = Math.floor(n / 2);
 //     let y = Math.floor(n / 2);
@@ -1143,10 +1143,10 @@
 //             visited[i][j] = false;
 //         }
 //     }
+
 //     visited[x][y];
 
 //     let sum = matrix[x][y];
-
 //     function check(x, y) {
 //         let directions = [
 //             [1, 0],
@@ -1154,9 +1154,10 @@
 //             [-1, 0],
 //             [0, -1],
 //         ];
-//         let min = 999;
 
+//         let min = 999;
 //         let helpX, helpY;
+
 //         for ([i, j] of directions) {
 //             let novix = x + i;
 //             let noviy = y + j;
@@ -1165,10 +1166,17 @@
 //                 return sum;
 //             }
 
+//             // Calculate the maximum steps in the X and Y directions
+//             let maxXSteps = Math.abs(novix - x);
+//             let maxYSteps = Math.abs(noviy - y);
+
+//             // Calculate the minimum of maxXSteps and maxYSteps
+//             let minSteps = Math.min(maxXSteps, maxYSteps);
+
 //             if (
 //                 min > matrix[novix][noviy] &&
 //                 !visited[novix][noviy] &&
-//                 i != j
+//                 novix != noviy
 //             ) {
 //                 visited[novix][noviy] = true;
 //                 min = matrix[novix][noviy];
@@ -1184,11 +1192,51 @@
 //     return check(x, y);
 // }
 
+// const random7x7Array = [
+//     1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5,
+// ];
+
+// const Matricerandom7x7Array = [
+//     1, 2, 3, 4, 1, 6, 7, 8, 9, 0, 2, 1, 3, 4, 5, 6, 7, 3, 0, 1, 5, 2, 3, 2, 5,
+//     6, 1, 8, 9, 0, 5, 0, 3, 1, 8, 0, 7, 8, 2, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0,
+// ];
 // const arr = [
-//     9, 3, 9, 9, 9, 5, 2, 7, 8, 9, 8, 7, 5, 8, 9, 6, 1, 8, 7, 9, 9, 9, 8, 9, 9,
+//     9, 3, 9, 9, 9, 5, 2, 7, 8, 9, 8, 1, 5, 8, 9, 6, 1, 8, 7, 9, 9, 9, 8, 9, 9,
 // ];
 
 // console.log(solution(5, arr));
+
+// function separate(n) {
+//     const nizNivoa = [];
+
+//     for (let i = 0; i < n / 2; i++) {
+//         let level = "";
+//         for (let j = i; j < n - i; j++) {
+//             level += i;
+//             level += j + ",";
+//             // level.push([i, j]);
+//         }
+//         for (let j = i + 1; j < n - i - 1; j++) {
+//             level += j;
+//             level += n - i - 1 + ",";
+//             // level.push([j, n - i - 1]);
+//         }
+//         for (let j = n - i - 1; j >= i; j--) {
+//             level += n - i - 1;
+//             level += j + ",";
+//             // level.push([n - i - 1, j]);
+//         }
+//         for (let j = n - i - 2; j > i; j--) {
+//             level += j;
+//             level += i + ",";
+//             // level.push([j, i]);
+//         }
+//         nizNivoa.push(level);
+//     }
+
+//     return nizNivoa;
+// }
+
 //lg
 
 //
@@ -1350,40 +1398,79 @@
 
 // console.log(testinTime.get("foo", 13));
 
-/**
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number}
- */
-var findMedianSortedArrays = function (nums1, nums2) {
-    let merged = [];
-    let i = 0,
-        j = 0;
+// /**
+//  * @param {number[]} nums1
+//  * @param {number[]} nums2
+//  * @return {number}
+//  */
+// var findMedianSortedArrays = function (nums1, nums2) {
+//     let merged = [];
+//     let i = 0,
+//         j = 0;
 
-    while (i < nums1.length && j < nums2.length) {
-        if (nums1[i] < nums2[j]) {
-            merged.push(nums1[i++]);
-        } else {
-            merged.push(nums2[j++]);
+//     while (i < nums1.length && j < nums2.length) {
+//         if (nums1[i] < nums2[j]) {
+//             merged.push(nums1[i++]);
+//         } else {
+//             merged.push(nums2[j++]);
+//         }
+//     }
+
+//     while (i < nums1.length) merged.push(nums1[i++]);
+//     while (j < nums2.length) merged.push(nums2[j++]);
+
+//     let mid = Math.floor(merged.length / 2);
+//     if (merged.length % 2 === 0) {
+//         return (merged[mid - 1] + merged[mid]) / 2;
+//     } else {
+//         return merged[mid];
+//     }
+// };
+// console.log(findMedianSortedArrays([3], [-2, -1]));
+
+// function createCounter(n) {
+//     return function () {
+//         return ++n;
+//     };
+// }
+
+// console.log(createCounter(createCounter(10)())());
+
+// var maxProfit = function (prices) {
+//     let min = prices[0];
+//     let overall = 0;
+
+//     for (let i = 0; i < prices.length; i++) {
+//         if (min > prices[i]) {
+//             min = prices[i];
+//         } else if (prices[i] - min > overall) {
+//             overall = prices[i] - min;
+//         }
+//     }
+
+//     return overall;
+// };
+
+// console.log(maxProfit([7, 1, 5, 3, 6, 4], 2));
+
+function sumOfK(prices, k) {
+    let sum = 0;
+    let max = 0;
+    for (let j = 0; j < k; j++) {
+        sum += prices[j];
+        max = sum;
+    }
+
+    console.log(sum);
+    for (let i = k; i < prices.length; i++) {
+        sum += prices[i] - prices[i - k];
+
+        if (sum > max) {
+            max = sum;
         }
     }
 
-    while (i < nums1.length) merged.push(nums1[i++]);
-    while (j < nums2.length) merged.push(nums2[j++]);
-
-    let mid = Math.floor(merged.length / 2);
-    if (merged.length % 2 === 0) {
-        return (merged[mid - 1] + merged[mid]) / 2;
-    } else {
-        return merged[mid];
-    }
-};
-console.log(findMedianSortedArrays([3], [-2, -1]));
-
-function createCounter(n) {
-    return function () {
-        return ++n;
-    };
+    return max;
 }
 
-console.log(createCounter(createCounter(10)())());
+console.log(sumOfK([3, 4, 1, 6, 8, 9, 2, 3], 3));

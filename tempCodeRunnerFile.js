@@ -1,2 +1,1 @@
-
-        helper.push(arr[i]);
+console.log(result);
