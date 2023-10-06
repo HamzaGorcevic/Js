@@ -1434,6 +1434,8 @@
 //     };
 // }
 
+// Window Sliding Technique is a computational technique which aims to reduce the use of nested loop and replace it with a single loop, thereby reducing the time complexity.
+// The Sliding window technique can reduce the time complexity to O(n).
 // console.log(createCounter(createCounter(10)())());
 
 // var maxProfit = function (prices) {
@@ -1453,24 +1455,48 @@
 
 // console.log(maxProfit([7, 1, 5, 3, 6, 4], 2));
 
-function sumOfK(prices, k) {
-    let sum = 0;
+// function sumOfK(prices, k) {
+//     let sum = 0;
+//     let max = 0;
+//     for (let j = 0; j < k; j++) {
+//         sum += prices[j];
+//         max = sum;
+//     }
+
+//     console.log(sum);
+//     for (let i = k; i < prices.length; i++) {
+//         sum += prices[i] - prices[i - k];
+
+//         if (sum > max) {
+//             max = sum;
+//         }
+//     }
+
+//     return max;
+// }
+
+// console.log(sumOfK([3, 4, 1, 6, 8, 9, 2, 3], 3));
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+    let checker = new Set();
+    let leng = 0;
+    let left = 0;
     let max = 0;
-    for (let j = 0; j < k; j++) {
-        sum += prices[j];
-        max = sum;
-    }
 
-    console.log(sum);
-    for (let i = k; i < prices.length; i++) {
-        sum += prices[i] - prices[i - k];
-
-        if (sum > max) {
-            max = sum;
+    for (let i = 0; i < s.length; i++) {
+        while (checker.has(s[i])) {
+            checker.delete(s[left]);
+            left++;
         }
+        checker.add(s[i]);
+        console.log(checker);
+        max = Math.max(max, checker.size);
     }
 
     return max;
-}
+};
 
-console.log(sumOfK([3, 4, 1, 6, 8, 9, 2, 3], 3));
+console.log(lengthOfLongestSubstring("dvdf"));
