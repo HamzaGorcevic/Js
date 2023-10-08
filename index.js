@@ -1519,13 +1519,27 @@ var characterReplacement = function (s, k) {
     return r - l;
 };
 
+// console.log(characterReplacement("ABAB", 1));
+
 function charRelacement(s, k) {
     let obj = {};
 
-    for (let i = 0; i < s.length; i++) {
-        obj[s[i]] = obj[s[i]] + 1 || 1;
+    let max = 0;
+
+    let l = 0;
+    let r = 0;
+
+    for (r = 0; r < s.length; r++) {
+        obj[s[r]] = obj[s[r]] + 1 || 1;
+        max = Math.max(max, obj[s[r]]);
+        if (r + 1 - l - max > k) {
+            obj[s[l]]--;
+            l++;
+        }
     }
+
+    return r - l;
 }
 
-console.log(characterReplacement("ABAB", 1));
-console.log(charRelacement("ABAB", 1));
+console.log(charRelacement("AABABBB", 2));
+// return 4
