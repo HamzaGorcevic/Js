@@ -1476,27 +1476,56 @@
 // }
 
 // console.log(sumOfK([3, 4, 1, 6, 8, 9, 2, 3], 3));
-/**
- * @param {string} s
- * @return {number}
- */
-var lengthOfLongestSubstring = function (s) {
-    let checker = new Set();
-    let leng = 0;
-    let left = 0;
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// var lengthOfLongestSubstring = function (s) {
+//     let checker = new Set();
+//     let leng = 0;
+//     let left = 0;
+//     let max = 0;
+
+//     for (let i = 0; i < s.length; i++) {
+//         while (checker.has(s[i])) {
+//             checker.delete(s[left]);
+//             left++;
+//         }
+//         checker.add(s[i]);
+//         console.log(checker);
+//         max = Math.max(max, checker.size);
+//     }
+
+//     return max;
+// };
+
+// console.log(lengthOfLongestSubstring("dvdf"));
+// unfinished
+var characterReplacement = function (s, k) {
+    let l = 0;
+    let r = 0;
+    let dict = {};
     let max = 0;
 
-    for (let i = 0; i < s.length; i++) {
-        while (checker.has(s[i])) {
-            checker.delete(s[left]);
-            left++;
-        }
-        checker.add(s[i]);
-        console.log(checker);
-        max = Math.max(max, checker.size);
-    }
+    for (r = 0; r < s.length; r++) {
+        dict[s[r]] = dict[s[r]] + 1 || 1;
+        max = Math.max(max, dict[s[r]]);
 
-    return max;
+        if (r - l + 1 - max > k) {
+            dict[s[l]]--;
+            l++;
+        }
+    }
+    return r - l;
 };
 
-console.log(lengthOfLongestSubstring("dvdf"));
+function charRelacement(s, k) {
+    let obj = {};
+
+    for (let i = 0; i < s.length; i++) {
+        obj[s[i]] = obj[s[i]] + 1 || 1;
+    }
+}
+
+console.log(characterReplacement("ABAB", 1));
+console.log(charRelacement("ABAB", 1));
