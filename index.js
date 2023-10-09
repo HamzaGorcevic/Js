@@ -1501,45 +1501,70 @@
 
 // console.log(lengthOfLongestSubstring("dvdf"));
 // unfinished
-var characterReplacement = function (s, k) {
-    let l = 0;
-    let r = 0;
-    let dict = {};
-    let max = 0;
+// var characterReplacement = function (s, k) {
+//     let l = 0;
+//     let r = 0;
+//     let dict = {};
+//     let max = 0;
 
-    for (r = 0; r < s.length; r++) {
-        dict[s[r]] = dict[s[r]] + 1 || 1;
-        max = Math.max(max, dict[s[r]]);
+//     for (r = 0; r < s.length; r++) {
+//         dict[s[r]] = dict[s[r]] + 1 || 1;
+//         max = Math.max(max, dict[s[r]]);
 
-        if (r - l + 1 - max > k) {
-            dict[s[l]]--;
-            l++;
+//         if (r - l + 1 - max > k) {
+//             dict[s[l]]--;
+//             l++;
+//         }
+//     }
+//     return r - l;
+// };
+
+// // console.log(characterReplacement("ABAB", 1));
+
+// function charRelacement(s, k) {
+//     let obj = {};
+
+//     let max = 0;
+
+//     let l = 0;
+//     let r = 0;
+
+//     for (r = 0; r < s.length; r++) {
+//         obj[s[r]] = obj[s[r]] + 1 || 1;
+//         max = Math.max(max, obj[s[r]]);
+//         if (r + 1 - l - max > k) {
+//             obj[s[l]]--;
+//             l++;
+//         }
+//     }
+
+//     return r - l;
+// }
+
+// console.log(charRelacement("AABABBB", 2));
+// return 4
+
+var checkInclusion = function (s1, s2) {
+    let arr = [];
+    let obj = {};
+    let visited = new Array(s2.length).fill(0);
+
+    for (let i = 0; i < s2.length; i++) {
+        if (s1.includes(s2[i])) {
+            arr.push(s2[i]);
+        }
+        if (arr.length == s1.length) {
+            console.log(s1.split("").sort().join(""), arr.sort().join(""));
+            if (s1.split("").sort().join("") == arr.sort().join("")) {
+                return true;
+            } else {
+                console.log("popped", arr.pop());
+                console.log(arr.length);
+            }
         }
     }
-    return r - l;
+    console.log(arr);
+    return false;
 };
 
-// console.log(characterReplacement("ABAB", 1));
-
-function charRelacement(s, k) {
-    let obj = {};
-
-    let max = 0;
-
-    let l = 0;
-    let r = 0;
-
-    for (r = 0; r < s.length; r++) {
-        obj[s[r]] = obj[s[r]] + 1 || 1;
-        max = Math.max(max, obj[s[r]]);
-        if (r + 1 - l - max > k) {
-            obj[s[l]]--;
-            l++;
-        }
-    }
-
-    return r - l;
-}
-
-console.log(charRelacement("AABABBB", 2));
-// return 4
+console.log(checkInclusion("ab", "eidboaoo"));
