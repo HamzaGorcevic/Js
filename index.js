@@ -1545,26 +1545,28 @@
 // return 4
 
 var checkInclusion = function (s1, s2) {
-    let arr = [];
-    let obj = {};
-    let visited = new Array(s2.length).fill(0);
+    function sortString(str) {
+        return str.split("").sort().join("");
+    }
+
+    s1 = sortString(s1);
+    let sum = 0;
+    for (let i = 0; i < s1.length; i++) {
+        sum += s1.charCodeAt(i);
+    }
 
     for (let i = 0; i < s2.length; i++) {
-        if (s1.includes(s2[i])) {
-            arr.push(s2[i]);
+        let s = "";
+
+        for (let j = i; j < i + s1.length; j++) {
+            s += s2[j];
         }
-        if (arr.length == s1.length) {
-            console.log(s1.split("").sort().join(""), arr.sort().join(""));
-            if (s1.split("").sort().join("") == arr.sort().join("")) {
-                return true;
-            } else {
-                console.log("popped", arr.pop());
-                console.log(arr.length);
-            }
+        if (s1 == sortString(s)) {
+            console.log(s);
+            return true;
         }
     }
-    console.log(arr);
     return false;
 };
 
-console.log(checkInclusion("ab", "eidboaoo"));
+console.log(checkInclusion("abc", "ccccbbbbcaaaa"));
