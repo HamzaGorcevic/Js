@@ -1544,29 +1544,125 @@
 // console.log(charRelacement("AABABBB", 2));
 // return 4
 
-var checkInclusion = function (s1, s2) {
-    function sortString(str) {
-        return str.split("").sort().join("");
-    }
+//bad solution
 
-    s1 = sortString(s1);
-    let sum = 0;
-    for (let i = 0; i < s1.length; i++) {
-        sum += s1.charCodeAt(i);
-    }
+// function customCharCodeAt(str, index) {
+//     const char = str[index];
+//     let modifiedValue = 0;
 
-    for (let i = 0; i < s2.length; i++) {
-        let s = "";
+//     switch (char) {
+//         case "a":
+//             modifiedValue = str.charCodeAt(index) + 100;
+//             break;
+//         case "b":
+//             modifiedValue = str.charCodeAt(index) - 10;
+//             break;
+//         case "c":
+//             modifiedValue = str.charCodeAt(index) + 200;
+//             break;
+//         case "d":
+//             modifiedValue = str.charCodeAt(index) - 20;
+//             break;
+//         case "e":
+//             modifiedValue = str.charCodeAt(index) + 300;
+//             break;
+//         case "f":
+//             modifiedValue = str.charCodeAt(index) - 30;
+//             break;
+//         case "g":
+//             modifiedValue = str.charCodeAt(index) + 400;
+//             break;
+//         case "h":
+//             modifiedValue = str.charCodeAt(index) - 40;
+//             break;
+//         case "i":
+//             modifiedValue = str.charCodeAt(index) + 500;
+//             break;
+//         case "j":
+//             modifiedValue = str.charCodeAt(index) - 50;
+//             break;
+//         case "k":
+//             modifiedValue = str.charCodeAt(index) + 601;
+//             break;
+//         case "l":
+//             modifiedValue = str.charCodeAt(index) - 60;
+//             break;
+//         case "m":
+//             modifiedValue = str.charCodeAt(index) + 700;
+//             break;
+//         case "n":
+//             modifiedValue = str.charCodeAt(index) - 70;
+//             break;
+//         case "o":
+//             modifiedValue = str.charCodeAt(index) + 800;
+//             break;
+//         case "p":
+//             modifiedValue = str.charCodeAt(index) - 80;
+//             break;
+//         case "q":
+//             modifiedValue = str.charCodeAt(index) + 900;
+//             break;
+//         case "r":
+//             modifiedValue = str.charCodeAt(index) - 90;
+//             break;
+//         case "s":
+//             modifiedValue = str.charCodeAt(index) + 1000;
+//             break;
+//         case "t":
+//             modifiedValue = str.charCodeAt(index) - 100;
+//             break;
+//         case "u":
+//             modifiedValue = str.charCodeAt(index) + 1100;
+//             break;
+//         case "v":
+//             modifiedValue = str.charCodeAt(index) - 110;
+//             break;
+//         case "w":
+//             modifiedValue = str.charCodeAt(index) + 1200;
+//             break;
+//         case "x":
+//             modifiedValue = str.charCodeAt(index) - 120;
+//             break;
+//         case "y":
+//             modifiedValue = str.charCodeAt(index) + 1300;
+//             break;
+//         case "z":
+//             modifiedValue = str.charCodeAt(index) - 130;
+//             break;
 
-        for (let j = i; j < i + s1.length; j++) {
-            s += s2[j];
-        }
-        if (s1 == sortString(s)) {
-            console.log(s);
-            return true;
-        }
-    }
-    return false;
-};
+//         default:
+//             modifiedValue = str.charCodeAt(index); // Use the default value for other characters
+//     }
 
-console.log(checkInclusion("abc", "ccccbbbbcaaaa"));
+//     return modifiedValue;
+// }
+
+// var checkInclusion = function (s1, s2) {
+//     let sum = 0;
+//     for (let i = 0; i < s1.length; i++) {
+//         sum += customCharCodeAt(s1, i);
+//     }
+
+//     console.log(sum);
+//     for (let i = 0; i < s2.length; i++) {
+//         let newSum = 0;
+
+//         for (let j = i; j < i + s1.length; j++) {
+//             newSum += customCharCodeAt(s2, j);
+//         }
+//         if (newSum - sum === 0) {
+//             return true;
+//         }
+//     }
+//     return false;
+// };
+
+// console.log(checkInclusion("kitten", "sitting"));
+
+// linked lists
+
+let prev = null;
+let curr = [1, 2, 3, 4, 5];
+let next = null;
+
+console.log(curr.next);
