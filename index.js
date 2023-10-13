@@ -1662,26 +1662,63 @@
 // linked lists
 
 // merge two linked list
-function ListNode(val, next) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-}
+// function ListNode(val, next) {
+//     this.val = val === undefined ? 0 : val;
+//     this.next = next === undefined ? null : next;
+// }
 
-/**
- * @param {ListNode} list1
- * @param {ListNode} list2
- * @return {ListNode}
- */
-var mergeTwoLists = function (list1, list2) {
-    if (list1 == null) {
-        return list2;
-    } else if (list2 == null) {
-        return list1;
-    } else if (list2.val > list1.val) {
-        list1.next = mergeTwoLists(list1.next, list2);
-        return list1;
-    } else {
-        list2.next = mergeTwoLists(list1, list2.next);
-        return list2;
+// /**
+//  * @param {ListNode} list1
+//  * @param {ListNode} list2
+//  * @return {ListNode}
+//  */
+// var mergeTwoLists = function (list1, list2) {
+//     if (list1 == null) {
+//         return list2;
+//     } else if (list2 == null) {
+//         return list1;
+//     } else if (list2.val > list1.val) {
+//         list1.next = mergeTwoLists(list1.next, list2);
+//         return list1;
+//     } else {
+//         list2.next = mergeTwoLists(list1, list2.next);
+//         return list2;
+//     }
+// };
+
+// senior S Eng interview , https://www.youtube.com/watch?v=yju4zwKSriI
+
+class Dictonary {
+    constructor(wordsARray) {
+        this.dict = new Set(wordsARray);
     }
-};
+
+    isInDict(word) {
+        let result = false;
+        [...this.dict].forEach((el) => {
+            if (word.length != el.length) {
+                result = false;
+                return result;
+            }
+            let counter = 0;
+            for (let i = 0; i < el.length; i++) {
+                if (el[i] == word[i] || word[i] == "*") {
+                    // if (word[i]=="*") {
+                    //     excuses = 0;
+                    // }
+                    counter++;
+                }
+                console.log(counter);
+            }
+            if (counter == el.length) {
+                console.log("wtf");
+                result = true;
+                return result;
+            }
+        });
+        return result;
+    }
+}
+const test = new Dictonary(["cat", "bat", "dog"]);
+
+console.log("returned val", test.isInDict("ba*"));
