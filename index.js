@@ -1686,39 +1686,63 @@
 //     }
 // };
 
-// senior S Eng interview , https://www.youtube.com/watch?v=yju4zwKSriI
+// // senior S Eng interview , https://www.youtube.com/watch?v=yju4zwKSriI
 
-class Dictonary {
-    constructor(wordsARray) {
-        this.dict = new Set(wordsARray);
-    }
+// class Dictonary {
+//     constructor(wordsARray) {
+//         this.dict = wordsARray;
+//     }
 
-    isInDict(word) {
-        let result = false;
-        [...this.dict].forEach((el) => {
-            if (word.length != el.length) {
-                result = false;
-                return result;
-            }
-            let counter = 0;
-            for (let i = 0; i < el.length; i++) {
-                if (el[i] == word[i] || word[i] == "*") {
-                    // if (word[i]=="*") {
-                    //     excuses = 0;
-                    // }
-                    counter++;
-                }
-                console.log(counter);
-            }
-            if (counter == el.length) {
-                console.log("wtf");
-                result = true;
-                return result;
-            }
-        });
-        return result;
-    }
+//     isInDict(word) {
+//         return this.dict.some((dictWord) => {
+//             const regexTemplate = word.replaceAll("*", ".");
+//             const regex = new RegExp(`^${regexTemplate}`);
+//             return regex.test(dictWord);
+//         });
+//     }
+// }
+// const test = new Dictonary(["cat", "bat", "dog"]);
+
+// console.log("returned val", test.isInDict("*a*"));
+
+// linked list
+
+function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
 }
-const test = new Dictonary(["cat", "bat", "dog"]);
 
-console.log("returned val", test.isInDict("ba*"));
+/**
+ * @param {ListNode} head
+ * @return {void} Do not return anything, modify head in-place instead.
+ */
+var reorderList = function (head) {
+    if (!head) {
+        return;
+    }
+    let stack = [];
+    let follower = head;
+    while (follower) {
+        stack.push(follower);
+        follower = follower.next;
+    }
+    let len = stack.length;
+    follower = head;
+    for (let i = 0; i < len; i++) {
+        if (i % 2 == 0) {
+            follower.next = stack.shift();
+        } else {
+            follower.next = stack.pop();
+        }
+        follower = follower.next;
+        console.log(follower.val);
+    }
+    follower.next = null;
+    console.log(head);
+};
+const nodeList = new ListNode(
+    1,
+    new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+);
+
+console.log(reorderList(nodeList));
