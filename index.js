@@ -1745,4 +1745,28 @@ const nodeList = new ListNode(
     new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
 );
 
-console.log(reorderList(nodeList));
+// console.log(reorderList(nodeList));
+
+var removeNthFromEnd = function (head, n) {
+    let temp = head;
+    let i = 0;
+    while (temp != null) {
+        i++;
+        temp = temp.next;
+    }
+    temp = head;
+    let cnt = 0;
+    if (temp.next == null) {
+        return head;
+    }
+    while (temp) {
+        if (cnt == i - n - 1) {
+            temp.next = temp.next.next;
+        } else {
+            temp = temp.next;
+        }
+        cnt++;
+    }
+    // console.log(head);
+};
+removeNthFromEnd(nodeList, 2);
