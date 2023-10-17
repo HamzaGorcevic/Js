@@ -1707,66 +1707,112 @@
 
 // linked list
 
+// function ListNode(val, next) {
+//     this.val = val === undefined ? 0 : val;
+//     this.next = next === undefined ? null : next;
+// }
+
+// /**
+//  * @param {ListNode} head
+//  * @return {void} Do not return anything, modify head in-place instead.
+//  */
+// var reorderList = function (head) {
+//     if (!head) {
+//         return;
+//     }
+//     let stack = [];
+//     let follower = head;
+//     while (follower) {
+//         stack.push(follower);
+//         follower = follower.next;
+//     }
+//     let len = stack.length;
+//     follower = head;
+//     for (let i = 0; i < len; i++) {
+//         if (i % 2 == 0) {
+//             follower.next = stack.shift();
+//         } else {
+//             follower.next = stack.pop();
+//         }
+//         follower = follower.next;
+//         console.log(follower.val);
+//     }
+//     follower.next = null;
+//     console.log(head);
+// };
+// const nodeList = new ListNode(
+//     1,
+//     new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+// );
+
+// // console.log(reorderList(nodeList));
+
+// var removeNthFromEnd = function (head, n) {
+//     let temp = head;
+//     let i = 0;
+//     while (temp != null) {
+//         i++;
+//         temp = temp.next;
+//     }
+//     temp = head;
+//     let cnt = 0;
+//     if (temp.next == null) {
+//         return head;
+//     }
+//     while (temp) {
+//         if (cnt == i - n - 1) {
+//             temp.next = temp.next.next;
+//         } else {
+//             temp = temp.next;
+//         }
+//         cnt++;
+//     }
+//     // console.log(head);
+// };
+// removeNthFromEnd(nodeList, 2);
+
+// add two linked lists as integers first attemp;
 function ListNode(val, next) {
     this.val = val === undefined ? 0 : val;
     this.next = next === undefined ? null : next;
 }
 
-/**
- * @param {ListNode} head
- * @return {void} Do not return anything, modify head in-place instead.
- */
-var reorderList = function (head) {
-    if (!head) {
-        return;
-    }
-    let stack = [];
-    let follower = head;
-    while (follower) {
-        stack.push(follower);
-        follower = follower.next;
-    }
-    let len = stack.length;
-    follower = head;
-    for (let i = 0; i < len; i++) {
-        if (i % 2 == 0) {
-            follower.next = stack.shift();
-        } else {
-            follower.next = stack.pop();
-        }
-        follower = follower.next;
-        console.log(follower.val);
-    }
-    follower.next = null;
-    console.log(head);
-};
-const nodeList = new ListNode(
-    1,
-    new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
-);
+function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+}
 
-// console.log(reorderList(nodeList));
+var addTwoNumbers = function (l1, l2) {
+    let str1 = "";
+    let str2 = "";
 
-var removeNthFromEnd = function (head, n) {
-    let temp = head;
-    let i = 0;
-    while (temp != null) {
-        i++;
-        temp = temp.next;
+    while (l1) {
+        str1 += l1.val;
+        l1 = l1.next;
     }
-    temp = head;
-    let cnt = 0;
-    if (temp.next == null) {
-        return head;
+    while (l2) {
+        str2 += l2.val;
+        l2 = l2.next;
     }
-    while (temp) {
-        if (cnt == i - n - 1) {
-            temp.next = temp.next.next;
-        } else {
-            temp = temp.next;
-        }
-        cnt++;
+
+    str1 =
+        str1.split("").reverse().join("") +
+        "+" +
+        str2.split("").reverse().join("");
+    let result = "" + eval(str1);
+    result = result.split("").reverse();
+
+    // Initialize the linkedResult with the first digit.
+    let linkedResult = new ListNode(parseInt(result[0]));
+    let current = linkedResult;
+
+    // Loop through the rest of the digits and create new nodes.
+    for (let i = 1; i < result.length; i++) {
+        let temp = new ListNode(parseInt(result[i]));
+        current.next = temp;
+        current = current.next;
     }
-    // console.log(head);
+
+    return linkedResult;
 };
-removeNthFromEnd(nodeList, 2);
+//
