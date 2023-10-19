@@ -1816,3 +1816,28 @@ var addTwoNumbers = function (l1, l2) {
     return linkedResult;
 };
 //
+\/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    let mapper = new Map;
+    while(head){
+        if(mapper.get(head)){
+            return true;
+        }else{
+            mapper.set(head,true)
+        }
+        head = head.next;
+    }
+    return false;
+    
+};
