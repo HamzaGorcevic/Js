@@ -1816,7 +1816,7 @@ var addTwoNumbers = function (l1, l2) {
     return linkedResult;
 };
 //
-\/**
+/**
  * Definition for singly-linked list.
  * function ListNode(val) {
  *     this.val = val;
@@ -1824,20 +1824,80 @@ var addTwoNumbers = function (l1, l2) {
  * }
  */
 
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
-var hasCycle = function(head) {
-    let mapper = new Map;
-    while(head){
-        if(mapper.get(head)){
-            return true;
-        }else{
-            mapper.set(head,true)
-        }
-        head = head.next;
-    }
-    return false;
-    
+// /**
+//  * @param {ListNode} head
+//  * @return {boolean}
+//  */
+// var hasCycle = function(head) {
+//     let mapper = new Map;
+//     while(head){
+//         if(mapper.get(head)){
+//             return true;
+//         }else{
+//             mapper.set(head,true)
+//         }
+//         head = head.next;
+//     }
+//     return false;
+
+// };
+var LRUCache = function (capacity) {
+    this.map = new Map();
+    this.size = capacity;
+    this.counter = 0;
+    this.max = 0;
 };
+
+LRUCache.prototype.get = function (key) {
+    if (this.map.has(key)) {
+        const [value, usage] = this.map.get(key);
+        console.log("increased", key);
+        this.map.set(key, [value, usage + 1]);
+
+        return value;
+    }
+    return -1;
+};
+
+LRUCache.prototype.put = function (key, value) {
+    if (this.counter >= this.size) {
+        let min = Infinity;
+        let minKey = null;
+        for (const [cacheKey, usage] of this.map) {
+            if (usage[1] < min) {
+                min = usage[1];
+                minKey = cacheKey;
+            }
+            if (usage[1] > this.max) {
+                this.max = usage[1];
+            }
+        }
+        console.log("del", minKey);
+        this.map.delete(minKey);
+    }
+    if (this.map.get(key)) {
+        console.log("increased", key);
+        this.map.set(key, [value, this.map.get(key)[1] + 1]);
+    } else {
+        this.map.set(key, [value, this.max + 1]);
+        this.counter++;
+    }
+};
+LRUCache.prototype.print = function () {
+    console.log(this.map);
+};
+
+let obj = new LRUCache(2);
+
+obj.put(1, 1);
+obj.put(2, 2);
+obj.get(1);
+
+obj.put(3, 3);
+obj.get(2);
+obj.put(4, 4);
+obj.get(1);
+obj.get(3);
+obj.get(4);
+
+obj.print();
