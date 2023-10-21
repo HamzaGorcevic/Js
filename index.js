@@ -1850,37 +1850,20 @@ var LRUCache = function (capacity) {
 
 LRUCache.prototype.get = function (key) {
     if (this.map.has(key)) {
-        const [value, usage] = this.map.get(key);
-        console.log("increased", key);
-        this.map.set(key, [value, usage + 1]);
-
-        return value;
+        const val = this.map.get(key);
+        this.map.delete(key);
+        this.map.set(key, val);
+        return this.map.get(key);
     }
     return -1;
 };
 
 LRUCache.prototype.put = function (key, value) {
-    if (this.counter >= this.size) {
-        let min = Infinity;
-        let minKey = null;
-        for (const [cacheKey, usage] of this.map) {
-            if (usage[1] < min) {
-                min = usage[1];
-                minKey = cacheKey;
-            }
-            if (usage[1] > this.max) {
-                this.max = usage[1];
-            }
-        }
-        console.log("del", minKey);
-        this.map.delete(minKey);
-    }
-    if (this.map.get(key)) {
-        console.log("increased", key);
-        this.map.set(key, [value, this.map.get(key)[1] + 1]);
-    } else {
-        this.map.set(key, [value, this.max + 1]);
-        this.counter++;
+    this.map.delete(key);
+    this.map.set(key, value);
+    console.log("next", this.map.keys().next());
+    if (this.counter > this.size) {
+        this.map.delete(this.map.keys().next().value);
     }
 };
 LRUCache.prototype.print = function () {
