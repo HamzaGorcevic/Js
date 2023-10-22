@@ -1841,46 +1841,86 @@ var addTwoNumbers = function (l1, l2) {
 //     return false;
 
 // };
-var LRUCache = function (capacity) {
-    this.map = new Map();
-    this.size = capacity;
-    this.counter = 0;
-    this.max = 0;
-};
+// var LRUCache = function (capacity) {
+//     this.map = new Map();
+//     this.size = capacity;
+//     this.counter = 0;
+//     this.max = 0;
+// };
 
-LRUCache.prototype.get = function (key) {
-    if (this.map.has(key)) {
-        const val = this.map.get(key);
-        this.map.delete(key);
-        this.map.set(key, val);
-        return this.map.get(key);
-    }
-    return -1;
-};
+// LRUCache.prototype.get = function (key) {
+//     if (this.map.has(key)) {
+//         const val = this.map.get(key);
+//         this.map.delete(key);
+//         this.map.set(key, val);
+//         return this.map.get(key);
+//     }
+//     return -1;
+// };
 
-LRUCache.prototype.put = function (key, value) {
-    this.map.delete(key);
-    this.map.set(key, value);
-    console.log("next", this.map.keys().next());
-    if (this.counter > this.size) {
-        this.map.delete(this.map.keys().next().value);
-    }
-};
-LRUCache.prototype.print = function () {
-    console.log(this.map);
-};
+// LRUCache.prototype.put = function (key, value) {
+//     this.map.delete(key);
+//     this.map.set(key, value);
+//     console.log("next", this.map.keys().next());
+//     if (this.counter > this.size) {
+//         this.map.delete(this.map.keys().next().value);
+//     }
+// };
+// LRUCache.prototype.print = function () {
+//     console.log(this.map);
+// };
 
-let obj = new LRUCache(2);
+// let obj = new LRUCache(2);
 
-obj.put(1, 1);
-obj.put(2, 2);
-obj.get(1);
+// obj.put(1, 1);
+// obj.put(2, 2);
+// obj.get(1);
 
-obj.put(3, 3);
-obj.get(2);
-obj.put(4, 4);
-obj.get(1);
-obj.get(3);
-obj.get(4);
+// obj.put(3, 3);
+// obj.get(2);
+// obj.put(4, 4);
+// obj.get(1);
+// obj.get(3);
+// obj.get(4);
 
-obj.print();
+// obj.print();
+
+// merging n sorted linked lists
+
+// var mergeKLists = function(lists) {
+//     if (lists.length === 0) {
+//         return null;
+//     }
+
+//     let final = lists[0];
+//     let temp = final;
+
+//     for (let i = 1; i < lists.length; i++) {
+//         let l1 = lists[i];
+//         let l2 = temp;
+//         let dummy = new ListNode(); // Create a dummy node for temporary merging
+//         let current = dummy; // Initialize current for the dummy node
+
+//         while (l1 && l2) {
+//             if (l1.val < l2.val) {
+//                 current.next = l1;
+//                 l1 = l1.next;
+//             } else {
+//                 current.next = l2;
+//                 l2 = l2.next;
+//             }
+//             current = current.next;
+//         }
+
+//         if (l1) {
+//             current.next = l1;
+//         } else {
+//             current.next = l2;
+//         }
+
+//         // Update temp for the next iteration
+//         temp = dummy.next;
+//     }
+
+//     return final;
+// };
