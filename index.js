@@ -1925,26 +1925,71 @@ var addTwoNumbers = function (l1, l2) {
 //     return final;
 // };
 
-var findMedianSortedArrays = function (nums1, nums2) {
-    let merged = [];
-    let i = 0,
-        j = 0;
+// var findMedianSortedArrays = function (nums1, nums2) {
+//     let merged = [];
+//     let i = 0,
+//         j = 0;
 
-    while (i < nums1.length && j < nums2.length) {
-        if (nums1[i] < nums2[j]) {
-            merged.push(nums1[i++]);
+//     while (i < nums1.length && j < nums2.length) {
+//         if (nums1[i] < nums2[j]) {
+//             merged.push(nums1[i++]);
+//         } else {
+//             merged.push(nums2[j++]);
+//         }
+//     }
+
+//     while (j < nums2.length) merged.push(nums2[j++]);
+//     while (i < nums1.length) merged.push(nums1[i++]);
+
+//     let mid = Math.floor(merged.length / 2);
+//     if (merged.length % 2 === 0) {
+//         return (merged[mid - 1] + merged[mid]) / 2;
+//     } else {
+//         return merged[mid];
+//     }
+// };
+
+//Yeah this is happening because the prompts are coming in too fast and the DOM doesn't have time to write since there's a pending prompt request going on. The solution to this is to put timeouts on your prompt methods.
+// Pravimo promis
+function generisiKartu() {
+    var broj = Math.floor(Math.random() * 10) + 1;
+    return broj;
+}
+
+var brojac = 0;
+
+var trazeniBroj = 42; // Replace 42 with the actual desired number
+var brojac = 0;
+
+async function getUserInput() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            unetiBroj = Number(prompt("Unesite neki broj: "));
+            resolve(unetiBroj);
+        }, 100);
+    });
+}
+
+async function main() {
+    let unetiBroj;
+
+    do {
+        unetiBroj = await getUserInput();
+
+        if (isNaN(unetiBroj)) {
+            alert("Neispravan unos, pokusajte ponovo: ");
         } else {
-            merged.push(nums2[j++]);
+            document.write(`<h1>razlika je ,${unetiBroj - trazeniBroj} </h1>`);
+            brojac++;
         }
-    }
 
-    while (j < nums2.length) merged.push(nums2[j++]);
-    while (i < nums1.length) merged.push(nums1[i++]);
+        document.querySelector("body").style.background = "#F3410F";
+    } while (unetiBroj !== trazeniBroj);
 
-    let mid = Math.floor(merged.length / 2);
-    if (merged.length % 2 === 0) {
-        return (merged[mid - 1] + merged[mid]) / 2;
-    } else {
-        return merged[mid];
-    }
-};
+    // Add any additional logic you need after the loop
+}
+main();
+
+document.write("Čestitamo, uneli ste tačan broj! (" + trazeniBroj + ")");
+document.write("<br>");
+document.write("Broj pogrešnih unosa je: " + brojac);
